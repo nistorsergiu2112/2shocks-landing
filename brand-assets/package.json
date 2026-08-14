@@ -1,0 +1,11 @@
+{
+  "name": "2shocks-brand-assets-v2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "rasterize": "node scripts/rasterize.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

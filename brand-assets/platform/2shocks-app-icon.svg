@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="two-shocks-title-app-icon">
+  <title id="two-shocks-title-app-icon">2Shocks app icon artwork</title>
+  <rect width="1024" height="1024" fill="#0B0B0F"/>
+  <defs>
+    <mask id="two-shocks-app-icon" maskUnits="userSpaceOnUse" x="0" y="0" width="96" height="96">
+      <rect width="96" height="96" fill="#000"/>
+      <g fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="28" cy="13" r="8" stroke="none"/>
+        <path d="M28 21v54" stroke-width="4.8"/>
+        <path stroke-width="3.7" d="M28 23 C33.74 23 38.4 24.23 38.4 25.75 C38.4 27.27 33.74 28.5 28 28.5 C22.26 28.5 17.6 29.73 17.6 31.25 C17.6 32.77 22.26 34 28 34 C33.74 34 38.4 35.23 38.4 36.75 C38.4 38.27 33.74 39.5 28 39.5 C22.26 39.5 17.6 40.73 17.6 42.25 C17.6 43.77 22.26 45 28 45 C33.74 45 38.4 46.23 38.4 47.75 C38.4 49.27 33.74 50.5 28 50.5 C22.26 50.5 17.6 51.73 17.6 53.25 C17.6 54.77 22.26 56 28 56"/>
+        <rect x="22.8" y="55.5" width="10.4" height="18" rx="5.2" stroke="none"/>
+        <circle cx="28" cy="83" r="8" stroke="none"/>
+        <circle cx="68" cy="13" r="8" stroke="none"/>
+        <path d="M68 21v54" stroke-width="4.8"/>
+        <path stroke-width="3.7" d="M68 23 C73.74 23 78.4 24.23 78.4 25.75 C78.4 27.27 73.74 28.5 68 28.5 C62.26 28.5 57.6 29.73 57.6 31.25 C57.6 32.77 62.26 34 68 34 C73.74 34 78.4 35.23 78.4 36.75 C78.4 38.27 73.74 39.5 68 39.5 C62.26 39.5 57.6 40.73 57.6 42.25 C57.6 43.77 62.26 45 68 45 C73.74 45 78.4 46.23 78.4 47.75 C78.4 49.27 73.74 50.5 68 50.5 C62.26 50.5 57.6 51.73 57.6 53.25 C57.6 54.77 62.26 56 68 56"/>
+        <rect x="62.8" y="55.5" width="10.4" height="18" rx="5.2" stroke="none"/>
+        <circle cx="68" cy="83" r="8" stroke="none"/>
+      </g>
+      <g fill="#000">
+        <circle cx="28" cy="13" r="2.75"/>
+        <circle cx="28" cy="83" r="2.75"/>
+        <circle cx="68" cy="13" r="2.75"/>
+        <circle cx="68" cy="83" r="2.75"/>
+      </g>
+    </mask>
+  </defs>
+  <g transform="translate(224 224) scale(6)">
+    <rect width="96" height="96" fill="#F8CD47" mask="url(#two-shocks-app-icon)"/>
+  </g>
+</svg>

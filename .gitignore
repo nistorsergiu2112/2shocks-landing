@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.DS_Store
+.vercel/
+
+# Internal brand exploration and generated review artifacts
+/brand-exploration/
+/output/
+/tmp/
