@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/inter";
 import "@fontsource-variable/space-grotesk";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -8,8 +7,8 @@ import { siteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "2Shocks — Know what your bike needs", template: "%s — 2Shocks" },
-  description: "A motorcycle ownership app that turns your UK registration into a clear bike record, with MOT status, likely parts and service planning.",
+  title: { default: "2Shocks — Your bike’s history. Your next service. Together.", template: "%s — 2Shocks" },
+  description: "Coming soon for UK riders. Start with your registration, keep MOT and maintenance records together, and prepare for your next service. Free for one bike at launch, with Workshop reference planned for Plus, subject to a production data agreement.",
   keywords: ["motorcycle app", "motorcycle passport", "UK MOT", "motorcycle maintenance", "motorcycle parts"],
   alternates: { canonical: "/" },
   openGraph: {
@@ -17,10 +16,10 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: siteUrl,
     siteName: "2Shocks",
-    title: "2Shocks — Know what your bike needs before it costs you",
-    description: "Your motorcycle identity, official status, likely parts and maintenance record — together.",
+    title: "2Shocks — Your bike’s history. Your next service. Together.",
+    description: "Your bike record, intelligent parts matching and service plans. Workshop reference is planned for Plus, subject to a production data agreement. Coming soon to iOS and Android.",
   },
-  twitter: { card: "summary_large_image", title: "2Shocks", description: "A clearer record of motorcycle ownership." },
+  twitter: { card: "summary_large_image", title: "2Shocks", description: "Your bike’s history. Your next service. Together." },
   icons: { icon: "/icon.svg" },
 };
 

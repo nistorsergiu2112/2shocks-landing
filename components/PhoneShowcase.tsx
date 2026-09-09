@@ -1,57 +1,34 @@
 "use client";
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { features } from "@/data/site";
-
+import s from "@/app/home.module.css";
+const labels = ["Motorcycle passport", "Service history", "Your collection"];
+const compactLabels = ["Passport", "History", "Collection"];
 export function PhoneShowcase() {
-  const [active, setActive] = useState(features[0].id);
-
-  useEffect(() => {
-    const nodes = features.map((feature) => document.getElementById(`feature-${feature.id}`)).filter(Boolean) as HTMLElement[];
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && setActive((entry.target as HTMLElement).dataset.feature ?? features[0].id)),
-      { rootMargin: "-35% 0px -45%", threshold: 0.05 },
-    );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className="feature-showcase">
-      <div className="phone-stage" aria-live="polite">
-        <div className="phone-shadow" />
-        <div className="phone-shell">
-          <div className="phone-speaker" />
-          <div className="phone-screen">
-            {features.map((feature) => (
-              <Image
-                key={feature.id}
-                src={feature.screen.src}
-                alt={feature.screen.alt}
-                width={390}
-                height={844}
-                className={active === feature.id ? "active" : ""}
-                sizes="(max-width: 900px) 76vw, 320px"
-              />
-            ))}
-          </div>
-        </div>
-        <div className="screen-caption"><span>{String(features.findIndex((item) => item.id === active) + 1).padStart(2, "0")}</span>{features.find((item) => item.id === active)?.screen.label}</div>
-      </div>
-      <div className="feature-copy-list">
-        {features.map((feature) => (
-          <article id={`feature-${feature.id}`} data-feature={feature.id} className="feature-copy" key={feature.id}>
-            <p className="eyebrow">{feature.eyebrow}</p>
-            <h3>{feature.title}</h3>
-            <p className="feature-description">{feature.description}</p>
-            <ul>{feature.points.map((point) => <li key={point}>{point}</li>)}</ul>
-            <div className="mobile-phone">
-              <div className="phone-shell"><div className="phone-speaker" /><div className="phone-screen"><Image src={feature.screen.src} alt={feature.screen.alt} width={390} height={844} sizes="82vw" /></div></div>
-            </div>
-          </article>
-        ))}
-      </div>
+  const [active, setActive] = useState(0);
+  const tour = useRef<HTMLDivElement>(null);
+  function select(index: number) {
+    setActive(index);
+    if (window.matchMedia("(max-width: 600px)").matches) {
+      tour.current?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    }
+  }
+  return <div className={s.showcase} ref={tour}>
+    <div className={s.tabs} role="tablist" aria-label="Explore the app">
+      {features.map((feature, index) => <button key={feature.id} id={`tab-${feature.id}`} role="tab" type="button" aria-label={labels[index]} aria-selected={active === index} aria-controls={`panel-${feature.id}`} tabIndex={active === index ? 0 : -1} onClick={() => select(index)} onKeyDown={(event) => {
+        let next = index;
+        if (event.key === "ArrowRight") next = (index + 1) % features.length;
+        else if (event.key === "ArrowLeft") next = (index + features.length - 1) % features.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = features.length - 1;
+        else return;
+        event.preventDefault(); select(next); document.getElementById(`tab-${features[next].id}`)?.focus();
+      }}><span className={s.fullTabLabel}>{labels[index]}</span><span className={s.compactTabLabel}>{compactLabels[index]}</span></button>)}
     </div>
-  );
+    {features.map((feature, index) => <div key={feature.id} id={`panel-${feature.id}`} role="tabpanel" aria-labelledby={`tab-${feature.id}`} hidden={active !== index} tabIndex={0} className={s.featurePanel}>
+      <div className={s.featureText}><p className={s.kicker}>{feature.eyebrow}</p><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.points.map(point => <li key={point}>{point}</li>)}</ul>{feature.id === "plus" && <p className={s.tierNote}>One active motorcycle on Free.<br />Up to five with 2Shocks Plus.</p>}</div>
+      <div className={s.featureScreen}><div className={s.device}><Image src={feature.screen.src} alt={feature.screen.alt} width={1170} height={2532} sizes="(max-width: 600px) 75vw, 340px" /></div></div>
+    </div>)}
+  </div>;
 }

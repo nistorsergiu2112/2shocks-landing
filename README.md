@@ -19,6 +19,12 @@ npm run build
 npm run test:e2e
 ```
 
-## Before public launch
+## Hosting handoff
 
-Replace the mock operator identity in `data/site.ts` and set `legalEntity.isMock` to `false`. Add official store URLs by changing the typed store configuration only when the app listings are live.
+See [HOSTING-HANDOFF.md](./HOSTING-HANDOFF.md) for deployment, domain/email preservation and live verification. Company details are confirmed in `data/site.ts`. Public legal pages cover the presentation website only.
+
+## Marketing and app readiness
+
+See [MARKETING-STRATEGY.md](./MARKETING-STRATEGY.md) for positioning and roadmap, and [LEGAL-READINESS.md](./LEGAL-READINESS.md) for the separate app release requirements.
+
+Contact links open an enquiry to `info@2shocks.com`. No newsletter, waitlist, analytics or hosted signup is configured. Proposed rider prices live in `data/site.ts`; website changes do not update mobile store products or entitlements.

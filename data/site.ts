@@ -24,7 +24,6 @@ export type LegalEntity = {
   name: string;
   companyNumber: string;
   registeredOffice: string;
-  isMock: boolean;
 };
 
 export const siteUrl = "https://2shocks.com";
@@ -34,11 +33,12 @@ export const contact: ContactDetails = {
   socialLinks: [],
 };
 
+export const contactEmailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("2Shocks enquiry")}`;
+
 export const legalEntity: LegalEntity = {
-  name: "2Shocks Technologies Ltd",
-  companyNumber: "00000000",
-  registeredOffice: "123 Example Street, London, EC1A 1AA, United Kingdom",
-  isMock: true,
+  name: "2 SHOCKS LTD",
+  companyNumber: "17067783",
+  registeredOffice: "2 Spring Corner, High Street, TW13 4PA, Feltham, United Kingdom",
 };
 
 export const stores: StoreAvailability[] = [
@@ -46,43 +46,51 @@ export const stores: StoreAvailability[] = [
   { store: "Google Play", available: false },
 ];
 
+// Proposed launch offer. Match these values to mobile store products before launch.
+export const riderPlans = {
+  freeBikes: 1,
+  plusBikes: 5,
+  plusAnnualGbp: 29.99,
+  plusMonthlyGbp: 3.99,
+} as const;
+
 export const features: Feature[] = [
   {
     id: "passport",
-    eyebrow: "01 / Motorcycle passport",
-    title: "Your bike, resolved from its registration.",
+    eyebrow: "Your bike, at a glance",
+    title: "Your motorcycle passport.",
     description:
-      "Start with a UK registration and turn scattered ownership details into one clear motorcycle record.",
+      "A bike record started from your UK registration. Find available MOT information and your next saved service plan together.",
     points: ["Identity and model details", "MOT status and history", "Latest official mileage"],
     screen: {
-      src: "/screens/add-bike.png",
-      alt: "2Shocks registration lookup screen with a sample UK plate",
-      label: "Registration lookup",
+      src: "/screens/home.webp",
+      alt: "2Shocks motorcycle passport showing a Honda, its MOT record and next service plan",
+      label: "Motorcycle passport",
     },
   },
   {
     id: "planning",
-    eyebrow: "02 / Maintenance record",
-    title: "Keep maintenance context with the motorcycle.",
+    eyebrow: "The work you’ve done",
+    title: "Remember what was done.",
     description:
-      "Record completed work and prepare what may need attention next, without rebuilding the story from memory.",
-    points: ["Rider-entered service history", "Saved service plans", "Notes, dates and mileage together"],
+      "An oil change, new tyres or a workshop visit. Record the work, date and mileage while the details are fresh.",
+    points: ["Add completed maintenance", "Keep your own service notes", "Record dates and mileage"],
     screen: {
-      src: "/screens/add-history.png",
+      src: "/screens/add-history.webp",
       alt: "2Shocks screen for adding a motorcycle service-history entry",
       label: "Service history",
     },
   },
   {
     id: "plus",
-    eyebrow: "03 / 2Shocks Plus",
+    eyebrow: "Room for your collection",
     title: "Every bike organised in one place.",
     description:
-      "Move from a single motorcycle to a collection, with each bike keeping its own reminders, parts and history.",
-    points: ["Up to five active motorcycles", "Separate records for every bike", "Richer ownership organisation"],
+      "With Plus, keep up to five bikes active together. Each has its own record, so your service plans and maintenance notes stay with the right motorcycle.",
+    points: ["Up to five active motorcycles", "Separate records for every bike", "Parts and service plans for each bike"],
     screen: {
-      src: "/screens/plus.png",
-      alt: "2Shocks Plus comparison showing multi-bike organisation",
+      src: "/screens/collection.webp",
+      alt: "2Shocks motorcycle collection showing a separate record and capacity for five active bikes",
       label: "2Shocks Plus",
     },
   },

@@ -1,10 +1,12 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 import { StoreBadges } from "./StoreBadges";
 import { Footer } from "./Footer";
 import { LegalPage } from "./LegalPage";
 import { BoltMark } from "./Brand";
 import { contact, features } from "@/data/site";
+
+afterEach(cleanup);
 
 describe("static site contracts", () => {
   it("renders both stores as coming soon and not as links", () => {
@@ -14,23 +16,26 @@ describe("static site contracts", () => {
     expect(container.querySelectorAll("a")).toHaveLength(0);
   });
 
-  it("renders contact and legal links but no empty social links", () => {
+  it("renders contact and legal links with non-interactive social placeholders", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: contact.email })).toHaveAttribute("href", `mailto:${contact.email}`);
-    expect(screen.getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms");
+    expect(screen.getByRole("link", { name: "Terms & conditions" })).toHaveAttribute("href", "/terms");
     expect(screen.getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
-    expect(screen.queryByText(/instagram|facebook|tiktok|youtube/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "X — coming soon" }).closest("a, button")).toBeNull();
+    expect(screen.getByRole("img", { name: "Facebook — coming soon" }).closest("a, button")).toBeNull();
   });
 
-  it("shows the legal draft warning while operator data is mocked", () => {
+  it("shows the website policy revision and confirmed operator", () => {
     render(<LegalPage eyebrow="Legal" title="Test policy" intro="Intro"><p>Body</p></LegalPage>);
-    expect(screen.getByRole("note")).toHaveTextContent("Draft operator details");
+    expect(screen.queryByRole("note")).not.toBeInTheDocument();
+    expect(screen.getByText("2 SHOCKS LTD")).toBeInTheDocument();
+    expect(screen.getByText("Last updated")).toBeInTheDocument();
   });
 
   it("defines useful alternative text for every screenshot", () => {
     expect(features).toHaveLength(3);
     for (const feature of features) {
-      expect(feature.screen.src).toMatch(/^\/screens\/.+\.png$/);
+      expect(feature.screen.src).toMatch(/^\/screens\/.+\.webp$/);
       expect(feature.screen.alt.length).toBeGreaterThan(20);
     }
   });
