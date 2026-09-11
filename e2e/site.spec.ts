@@ -126,3 +126,17 @@ test("mobile tour keeps the complete phone in view after switching", async ({ pa
     await expect(image).toBeInViewport({ ratio: 1 });
   }
 });
+
+test("rider guides are linked, readable and accessible", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "How to check a motorcycle’s MOT history", exact: true }).click();
+  await expect(page).toHaveURL(/\/guides\/motorcycle-mot-history$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How to check a motorcycle’s MOT history");
+  await expect(page.getByRole("link", { name: "Check MOT history on GOV.UK" })).toHaveAttribute("href", "https://www.gov.uk/check-mot-history");
+  for (const path of ["/guides", "/guides/motorcycle-mot-history", "/guides/motorcycle-service-history"]) {
+    await page.goto(path);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+    expect(results.violations).toEqual([]);
+  }
+});

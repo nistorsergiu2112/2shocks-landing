@@ -8,20 +8,14 @@ import { siteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "2Shocks — Your bike’s history. Your next service. Together.", template: "%s — 2Shocks" },
-  description: "Coming soon for UK riders. Start with your registration, keep MOT and maintenance records together, and prepare for your next service. Free for one bike at launch, with Workshop reference planned for Plus, subject to a production data agreement.",
-  keywords: ["motorcycle app", "motorcycle passport", "UK MOT", "motorcycle maintenance", "motorcycle parts"],
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    locale: "en_GB",
-    url: siteUrl,
-    siteName: "2Shocks",
-    title: "2Shocks — Your bike’s history. Your next service. Together.",
-    description: "Your bike record, intelligent parts matching and service plans. Workshop reference is planned for Plus, subject to a production data agreement. Coming soon to iOS and Android.",
+  title: { default: "2Shocks | Motorcycle Maintenance & MOT History App", template: "%s | 2Shocks" },
+  applicationName: "2Shocks",
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }, { url: "/brand/2shocks-symbol-512.png", sizes: "512x512", type: "image/png" }],
+    apple: "/brand/2shocks-symbol-512.png",
   },
-  twitter: { card: "summary_large_image", title: "2Shocks", description: "Your bike’s history. Your next service. Together." },
-  icons: { icon: "/icon.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/data/site";
+import { guides } from "@/data/guides";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/terms", "/privacy"].map((path) => ({ url: `${siteUrl}${path}`, lastModified: new Date("2026-08-11"), changeFrequency: path ? "yearly" : "monthly", priority: path ? 0.4 : 1 }));
+  // Editorial dates: update only when the page content changes, not on every build.
+  return [
+    { url: `${siteUrl}/`, lastModified: "2026-09-11" },
+    { url: `${siteUrl}/guides`, lastModified: "2026-09-11" },
+    ...guides.map(({ slug }) => ({ url: `${siteUrl}/guides/${slug}`, lastModified: "2026-09-11" })),
+    ...["terms", "privacy"].map(path => ({ url: `${siteUrl}/${path}`, lastModified: "2026-09-09" })),
+  ];
 }

@@ -1,17 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
+import { pageMetadata, homeSchema } from "@/lib/seo";
+import { guides } from "@/data/guides";
 import { FAQ } from "@/components/FAQ";
 import { BackToTop } from "@/components/BackToTop";
 import { BoltMark } from "@/components/Brand";
 import { PhoneShowcase } from "@/components/PhoneShowcase";
 import { StoreBadges } from "@/components/StoreBadges";
-import { contact, contactEmailUrl, riderPlans, siteUrl } from "@/data/site";
+import { contact, contactEmailUrl, riderPlans } from "@/data/site";
 import s from "./home.module.css";
 
-const schema = {
-  "@context": "https://schema.org", "@type": "MobileApplication", name: "2Shocks",
-  operatingSystem: "iOS, Android", applicationCategory: "UtilitiesApplication", url: siteUrl,
-  description: "A coming-soon UK motorcycle ownership app for MOT records, maintenance history and service preparation.",
-};
+export const metadata = pageMetadata("2Shocks | Motorcycle Maintenance & MOT History App", "2Shocks is a motorcycle maintenance app for UK riders. Keep MOT history, service records and plans together. Coming soon to iOS and Android.", "/", true);
 
 const questions = [
   ["Who is 2Shocks for?", "UK motorcycle owners who want to keep track of their bike and prepare for maintenance. Whether you’ve just bought a used bike or have owned yours for years, start with its registration and confirm the details we find. Coverage and available information vary by motorcycle."],
@@ -30,11 +29,11 @@ function AppScreen({ name, alt, priority = false }: { name: string; alt: string;
 
 export default function Home() {
   return <main id="main-content" tabIndex={-1} className={s.home}>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema).replace(/</g, "\\u003c") }} />
     <section className={s.hero}>
       <p className={s.launch}><strong><i aria-hidden="true" />Coming soon</strong><span>Built for UK riders</span></p>
       <h1>Your bike’s history.<br /><span>Your next service. Together.</span></h1>
-      <p className={s.lede}>Start with your registration. Keep MOT records and maintenance together, and prepare a service plan you can show to any garage.</p>
+      <p className={s.lede}>2Shocks is a motorcycle maintenance app for UK riders. Start with your registration, keep MOT history and service records together, and prepare a service plan you can show to any garage.</p>
       <div className={s.heroActions}><a className={s.button} href="#launch">Contact us</a><a className={s.secondaryLink} href="#features">Explore the app <span aria-hidden="true">↓</span></a></div>
       <p className={s.heroNote}><strong>Free for one bike at launch</strong><span>Coming to iOS & Android · <a href="#workshop">Workshop reference with Plus</a></span></p>
       <div className={s.heroScreens}>
@@ -119,6 +118,14 @@ export default function Home() {
       <div className={s.planOptions}>
         <article className={s.freePlan}><p className={s.kicker}>2Shocks Free</p><h3>One bike. The essentials.</h3><p className={s.price}>£0 <span>/ one active motorcycle</span></p><ul><li>Registration-based bike identification</li><li>Available MOT history and live tax checks</li><li>Your maintenance history and service plans</li><li>Intelligent parts matching and saved shortlists</li></ul><a className={s.inlineLink} href="#launch">Contact us <span aria-hidden="true">↗</span></a></article>
         <article className={s.plusPlan}><p className={s.kicker}>2Shocks Plus</p><h3>Know more about your bike.</h3><p className={s.price}>£{riderPlans.plusMonthlyGbp.toFixed(2)} <span>/ month</span></p><p className={s.annualPrice}>Or £{riderPlans.plusAnnualGbp.toFixed(2)} / year, billed annually.</p><ul><li>Planned model-specific Workshop reference</li><li>Available fluid specs, capacities and torque settings</li><li>Maintenance periods, tasks and repair information</li><li>All Free features, across up to five active bikes</li></ul><p className={s.planNote}>Workshop requires a production data agreement; coverage varies by motorcycle. Planned launch pricing. Final price and features confirmed before purchase.</p></article>
+      </div>
+    </section>
+
+    <section className={`${s.section} ${s.intro}`} id="rider-guides">
+      <p className={s.kicker}>Motorcycle ownership guides</p>
+      <h2>Know your history.<br /><span>Plan what comes next.</span></h2>
+      <div className={s.facts}>
+        {guides.map(guide => <article key={guide.slug}><h3><Link href={`/guides/${guide.slug}`}>{guide.title}</Link></h3><p>{guide.description}</p><Link className={s.inlineLink} href={`/guides/${guide.slug}`}>Read the guide <span aria-hidden="true">↗</span></Link></article>)}
       </div>
     </section>
 

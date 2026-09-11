@@ -26,7 +26,7 @@ export type LegalEntity = {
   registeredOffice: string;
 };
 
-export const siteUrl = "https://2shocks.com";
+export const siteUrl = "https://www.2shocks.com";
 
 export const contact: ContactDetails = {
   email: "info@2shocks.com",

@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { LegalPage } from "@/components/LegalPage";
 import { contact, legalEntity } from "@/data/site";
 
-export const metadata: Metadata = { title: "Website Privacy Policy", description: "How 2 SHOCKS LTD handles website visits and email enquiries.", alternates: { canonical: "/privacy" } };
+export const metadata = pageMetadata("Website Privacy Policy", "How 2 SHOCKS LTD handles website visits and email enquiries.", "/privacy");
 
 export default function PrivacyPage() {
   return (

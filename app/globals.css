@@ -143,3 +143,11 @@ html { scroll-behavior: auto; }
  .footer-links .footer-email { font-size: 16px; }
  .site-footer { padding-top: 42px; }
 }
+
+/* Rider guides use the existing paper, ink and plate-yellow brand palette. */
+.guide-page .legal-hero h1 { font-size: clamp(42px, 6vw, 72px); line-height: 1.05; }
+.guide-page .legal-hero nav { margin-bottom: 28px; font-size: 14px; }
+.guide-page .legal-hero nav a { text-decoration: underline; text-underline-offset: 4px; }
+.guide-page .legal-hero .guide-byline { margin-bottom: 0; font-size: 14px; }
+.guide-page .legal-content { max-width: 740px; }
+.guide-page .legal-content p { font-size: 17px; }

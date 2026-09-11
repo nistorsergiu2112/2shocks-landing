@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { LegalPage } from "@/components/LegalPage";
 import { contact, legalEntity } from "@/data/site";
 
-export const metadata: Metadata = { title: "Website Terms", description: "Terms for using the 2Shocks presentation website.", alternates: { canonical: "/terms" } };
+export const metadata = pageMetadata("Website Terms of Use", "Terms for using the 2Shocks website and information about our coming-soon motorcycle app.", "/terms");
 
 export default function TermsPage() {
   return (
