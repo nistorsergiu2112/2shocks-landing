@@ -7,8 +7,10 @@ const links = [
   ["How it works", "/#how-it-works"],
   ["Features", "/#features"],
   ["Free & Plus", "/#plans"],
-  ["Privacy", "/privacy"],
-  ["Terms & conditions", "/terms"],
+  ["Website privacy", "/privacy"],
+  ["App privacy", "/app-privacy"],
+  ["Website terms", "/terms"],
+  ["App terms", "/app-terms"],
 ];
 
 export function Header() {

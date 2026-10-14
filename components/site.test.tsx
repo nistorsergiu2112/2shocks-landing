@@ -19,8 +19,8 @@ describe("static site contracts", () => {
   it("renders contact and legal links with non-interactive social placeholders", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: contact.email })).toHaveAttribute("href", `mailto:${contact.email}`);
-    expect(screen.getByRole("link", { name: "Terms & conditions" })).toHaveAttribute("href", "/terms");
-    expect(screen.getByRole("link", { name: "Privacy" })).toHaveAttribute("href", "/privacy");
+    expect(screen.getByRole("link", { name: "Website terms" })).toHaveAttribute("href", "/terms");
+    expect(screen.getByRole("link", { name: "Website privacy" })).toHaveAttribute("href", "/privacy");
     expect(screen.getByRole("img", { name: "X — coming soon" }).closest("a, button")).toBeNull();
     expect(screen.getByRole("img", { name: "Facebook — coming soon" }).closest("a, button")).toBeNull();
   });

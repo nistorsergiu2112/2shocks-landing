@@ -1,4 +1,18 @@
-# Website hosting handoff
+> **8 October 2026 recheck:** Use [PRODUCTION-LAUNCH-PLAN.md](./PRODUCTION-LAUNCH-PLAN.md) for the current launch sequence and provider status. Free now includes plans/history/garage sheets and unlimited replacement of its one active bike. Plus adds five simultaneous bikes, reminders/alerts and no ads. The latest private-history and mileage work is uncommitted in backend/mobile. Earlier evidence below is dated and does not prove current production readiness.
+
+# Current handoff — 3 October 2026
+
+See [APP-LEGAL-REVIEW.md](./APP-LEGAL-REVIEW.md) for the new app privacy/terms pages, app-ads.txt, evidence, owner confirmations and Vercel deployment sequence. No deployment was performed. Existing Vercel Web Analytics is now disclosed; earlier no-analytics statements below are historical. The retired Workshop/annual offer has been replaced in current landing copy. App ads remain disabled pending release verification. See `PRIVACY-OPERATIONS.md` for the owner-approved support policy. Website statistics remain on by default, with a browser opt-out on `/privacy`.
+
+## Verified current deployment facts
+
+- Existing Vercel project is already configured with www Production and apex 308 to www. No domain or email DNS changes are needed simply to publish these new pages.
+- Vercel currently shows Hobby. Resolve the commercial-use plan or obtain a written provider exception; the company's product marketing is covered by its [commercial-use definition](https://vercel.com/docs/limits/fair-use-guidelines#commercial-usage) even without website checkout. No upgrade or payment has been made.
+- Website analytics is already active; the new implementation adds an owner-approved browser opt-out. Test opt-out, return visits and re-enable after deployment. No new analytics SDK was added.
+- Public app pages/app-ads.txt were 404 at the prior live check. Publishing the static build and checking HTTP responses remains necessary. UMP remains an unpublished draft with no privacy URLs.
+- AdMob targeting stays EEA/UK/Switzerland per owner decision. Do not enable production ads from this site or deploy the Railway staged changes as part of a landing release.
+
+## Historical website handoff — 9 September 2026
 
 Prepared 9 September 2026. Website preparation only; no deployment or DNS changes performed.
 

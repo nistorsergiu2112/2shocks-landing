@@ -1,6 +1,22 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("loopback preview loads interactive scripts and responds to controls", async ({ page, baseURL }) => {
+  const preview = new URL(baseURL!);
+  if (!["localhost", "127.0.0.1"].includes(preview.hostname)) test.skip(true, "local preview check");
+  preview.hostname = "127.0.0.1";
+  const blockedScripts: string[] = [];
+  page.on("response", response => {
+    if (response.url().includes("/_next/") && response.status() === 403) blockedScripts.push(response.url());
+  });
+  await page.goto(preview.href);
+  await page.getByRole("tab", { name: "Service history" }).click();
+  await expect(page.getByRole("tabpanel", { name: "Service history" })).toBeVisible();
+  await page.getByRole("button", { name: "Show Start with your number plate." }).click();
+  await expect(page.getByRole("group", { name: /2 of 9/ })).toBeVisible();
+  expect(blockedScripts).toEqual([]);
+});
+
 test("home presents the rider app and coming-soon state", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Your bike’s history.");
@@ -14,7 +30,7 @@ test("home presents the rider app and coming-soon state", async ({ page }) => {
 });
 
 test("legal routes show website-only policies and confirmed operator", async ({ page }) => {
-  for (const path of ["/terms", "/privacy"]) {
+  for (const path of ["/terms", "/privacy", "/app-terms", "/app-privacy"]) {
     await page.goto(path);
     await expect(page.getByRole("note")).toHaveCount(0);
     await expect(page.getByText("2 SHOCKS LTD", { exact: true }).first()).toBeVisible();
@@ -93,7 +109,7 @@ test("pages have no horizontal overflow", async ({ page }) => {
 });
 
 test("home and legal pages pass accessibility checks", async ({ page }) => {
-  for (const path of ["/", "/terms", "/privacy"]) {
+  for (const path of ["/", "/terms", "/privacy", "/app-terms", "/app-privacy"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     expect(results.violations).toEqual([]);
@@ -139,4 +155,105 @@ test("rider guides are linked, readable and accessible", async ({ page }) => {
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     expect(results.violations).toEqual([]);
   }
+});
+
+
+test("advertising handoff serves plain text and distinct legal links", async ({ page, request }) => {
+  const response = await request.get('/app-ads.txt');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('text/plain');
+  expect(await response.text()).toBe('google.com, pub-1348658013604630, DIRECT, f08c47fec0942fa0\n');
+  await page.goto('/');
+  for (const [label, path] of [['Website privacy', '/privacy'], ['App privacy', '/app-privacy'], ['Website terms', '/terms'], ['App terms', '/app-terms']]) {
+    await expect(page.locator('footer').getByRole('link', {name: label, exact: true})).toHaveAttribute('href', path);
+  }
+  await page.goto('/app-privacy');
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Rider App Privacy');
+  await expect(page.locator('main')).toContainText('off by default');
+  await expect(page.locator('main')).toContainText('keep access without ads');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test("website statistics can be disabled, stay disabled and be re-enabled", async ({ page }) => {
+  await page.route('**/_vercel/insights/script.js', route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  await page.goto('/privacy');
+  await expect(page.getByRole('status')).toContainText('on in this browser');
+  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(1);
+  await page.getByRole('button', { name: 'Turn off website statistics', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('off in this browser');
+  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(0);
+  await page.goto('/');
+  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(0);
+  await page.goto('/privacy');
+  await page.getByRole('button', { name: 'Turn on website statistics', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('on in this browser');
+  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(1);
+});
+
+test("hero gallery offers every screen without changing plan benefits", async ({ page }, testInfo) => {
+  await page.goto('/');
+  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
+  await gallery.scrollIntoViewIfNeeded();
+  for (const button of await gallery.getByRole('button', { name: /^Show / }).all()) {
+    await button.click();
+    const slide = gallery.getByRole('group', { name: /of 9/ });
+    await expect(slide).toHaveCount(1);
+    await expect(slide.getByRole('img')).toBeVisible();
+    await expect.poll(() => slide.getByRole('img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  }
+  await expect(gallery).toContainText('2Shocks Plus');
+  await gallery.getByRole('button', { name: 'Show Prepare for your next garage visit.' }).click();
+  await expect(gallery).toContainText('Included in Free');
+  await expect(gallery).toContainText('review and send an enquiry in your email app');
+  await expect(gallery.getByRole('button')).toHaveCount(9);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await gallery.screenshot({ path: testInfo.outputPath('gallery.png') });
+});
+
+test("mobile hero supports horizontal swipe without clipping the selected phone", async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'touch interaction');
+  await page.goto('/');
+  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
+  const phone = gallery.getByRole('group', { name: /1 of 9/ });
+  await phone.scrollIntoViewIfNeeded();
+  await expect(phone.getByRole('img')).toBeInViewport({ ratio: 1 });
+  const stage = gallery.locator('[data-dragging]');
+  await stage.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', clientX: 260, clientY: 300 });
+  await stage.dispatchEvent('pointermove', { pointerId: 1, pointerType: 'touch', clientX: 130, clientY: 305 });
+  await stage.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', clientX: 130, clientY: 305 });
+  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
+  await expect(gallery).toContainText('Start with your number plate.');
+  await stage.dispatchEvent('pointerdown', { pointerId: 2, pointerType: 'touch', clientX: 130, clientY: 300 });
+  await stage.dispatchEvent('pointermove', { pointerId: 2, pointerType: 'touch', clientX: 260, clientY: 305 });
+  await stage.dispatchEvent('pointerup', { pointerId: 2, pointerType: 'touch', clientX: 260, clientY: 305 });
+  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
+  await expect(gallery.getByRole('button')).toHaveCount(9);
+});
+
+test("desktop hero rotates every five seconds and honours focus and reduced motion", async ({ page, isMobile }) => {
+  test.skip(isMobile, 'desktop rotation');
+  await page.clock.install();
+  await page.goto('/');
+  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
+  await gallery.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
+  await page.clock.runFor(4900);
+  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
+  await page.clock.runFor(1100);
+  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
+  await gallery.getByRole('button', { name: 'Show Start with your number plate.' }).focus();
+  await page.mouse.move(0, 0);
+  await page.clock.runFor(20000);
+  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
+  await page.locator('h1').click();
+  await gallery.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
+  await page.clock.runFor(5100);
+  await expect(gallery.getByRole('group', { name: /3 of 9/ })).toBeVisible();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.clock.runFor(10000);
+  await expect(gallery.getByRole('group', { name: /3 of 9/ })).toBeVisible();
+  await gallery.getByRole('button', { name: 'Show Choose the work to discuss.' }).click();
+  await expect(gallery.getByRole('group', { name: /4 of 9/ })).toBeVisible();
 });

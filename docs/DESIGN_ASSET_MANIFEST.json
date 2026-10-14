@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-14",
+  "identity": "Preserved graphite, paper, registration yellow and twin-shock logo",
+  "platform": "iOS 26.2 \u00b7 iPhone 17 Pro",
+  "syntheticData": true,
+  "captureSource": "Origin: Native iPhone 17 Pro simulator screen capture of current 2shocks source, iOS 26.2, 2026-10-14. Uses clearly illustrative synthetic motorcycle, rider and API data in a disposable preview checkout. No production account or requests. Fonts, components, layouts and navigation rendered by the source app, not a reconstructed UI.",
+  "screens": [
+    {
+      "name": "add-bike",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/add-bike.png",
+      "sha256": "6da8231855e187e4181f41617e47c37d1422c818f0e026b4a29099326952c714",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/add-bike.webp",
+      "websiteSha256": "758ad3a52a4f73eb8963504dcb9ffc625ba2885de378f94ea2864aa17fded600"
+    },
+    {
+      "name": "add-history",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/add-history.png",
+      "sha256": "40c22d5eb137da96f4eb95e733ee0ef66eb898d39e4079d12d0bf96fbddf0402",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/add-history.webp",
+      "websiteSha256": "8e19c9868f8969a3ab387b7c8b25eae1ea88c6d712cb968ff151421bb2c4811a"
+    },
+    {
+      "name": "bike-record",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/bike-record.png",
+      "sha256": "de168536e2c3c079ac96611e2c33fab9a9fce014620cc1cfbdf0529a068d9fdc",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/bike-record.webp",
+      "websiteSha256": "5824a9886a0d10bd0c08739e8db9ed677c92ec2f8c10446ba76ed0cfb98d806e"
+    },
+    {
+      "name": "collection",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/collection.png",
+      "sha256": "804c487f997e871e802be8f442973f72e35c2439eb1c563c6765dfb1dd5389e3",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/collection.webp",
+      "websiteSha256": "b169acdd4dcd6a7869e11a77b21d460b80bad57abe16f8c2d53d5bd55eb6b030"
+    },
+    {
+      "name": "home",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/home.png",
+      "sha256": "e69a3c66511c0efb68cbdced33963f6a284e55d9928e958e6f1d819f76dd2886",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/home.webp",
+      "websiteSha256": "66fc0bf550a593f2712c9bd98687fa7682ab3f099440375fec3dbfa4840ac97f"
+    },
+    {
+      "name": "mileage",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/mileage.png",
+      "sha256": "3b5e5c05e42bee3afe566329f4030214db442ef2a98f02e576c2bd473811e13f"
+    },
+    {
+      "name": "notification-center",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/notification-center.png",
+      "sha256": "2e21daf45680dd62b1f7f1bf6b18618f3586516d4823fed99b20f9a250c4a1eb",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/notification-center.webp",
+      "websiteSha256": "bb849ab8a4ed752e3443b4977cdff78d15eff6116fd9111fdb847e42f3bdedff"
+    },
+    {
+      "name": "parts",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/parts.png",
+      "sha256": "c245854487b2a2d954ff3964d7f2ef089c5f7a1351808d632c86608b529c653f"
+    },
+    {
+      "name": "plan-summary",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/plan-summary.png",
+      "sha256": "217102b3d94c7dad5d813d9de71c12ac8371ab3ce19d7cfaff0e9dc628068660",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/plan-summary.webp",
+      "websiteSha256": "465de04d51c0166657a51e5510fc210caa77eca0a5be61eb78f267db058a0414"
+    },
+    {
+      "name": "plus",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/plus.png",
+      "sha256": "9b2cf6818d7a8e40ca3bf1455b873f1b1bb9b8676947254478e1711d29241af4"
+    },
+    {
+      "name": "preferences",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/preferences.png",
+      "sha256": "19f27edf9dbbd76826ac8ee23e99f8d036d5afbfcd601e1d8ccce91003edbd31",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/preferences.webp",
+      "websiteSha256": "bed889aa0e7ec3755b406f2fd18c0b2194999a676ca80d3344ead3a9b978a7c9"
+    },
+    {
+      "name": "privacy",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/privacy.png",
+      "sha256": "3b67d49cdd920441a2bc1b904963205172e8b6a25fca2b189ba9995363b4bde0"
+    },
+    {
+      "name": "profile",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/profile.png",
+      "sha256": "79a0c0a682b0820690f96d61978211a83617ca6b149f4ebfd9dd0e31e24f7354"
+    },
+    {
+      "name": "ready-for-garage",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/ready-for-garage.png",
+      "sha256": "980616e54186c1d4b0359c18f6a8c6c58b48fe7c1035e07375cd9312cb24a4f3",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/ready-for-garage.webp",
+      "websiteSha256": "9df6a4ebd5424344341663cece58a456c66b5421eb6e3b4cee95970c14fe2f33"
+    },
+    {
+      "name": "service-work",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/service-work.png",
+      "sha256": "9dd8eb0219d60bf3ab87384a33e21c0fef4a90bf70988cfa09ecd74b7fae7097",
+      "websiteAsset": "/Users/sergiunistorcosmin/Desktop/2shocks-landing/public/screens/service-work.webp",
+      "websiteSha256": "5d8565078c5abde2c980c570a4f2c151735f53431bce5e168ae67ccb888fdfc8"
+    },
+    {
+      "name": "settings",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/settings.png",
+      "sha256": "ae561e5971d0f0b9c7e06db8df21956b539b9db5b3cf58ce5dc8a41d27af7478"
+    },
+    {
+      "name": "support",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/support.png",
+      "sha256": "a8bc675012ad7324c60b65bdb12c2e174a81a8168715a542e7e240dbc71720fe"
+    },
+    {
+      "name": "verification",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/verification.png",
+      "sha256": "9979e8a10e07d1eb24bfb390b480917b8e1a4beb369072d465cbae6b4300624b"
+    },
+    {
+      "name": "welcome",
+      "nativeCapture": "/Users/sergiunistorcosmin/Desktop/2shocks assets/2shocks-documents/app-screenshots/2026-10-14/welcome.png",
+      "sha256": "a53a48ce3c557eb7fae1451decc756b3c33d0621cc0d2317b82ff3433ce7c090"
+    }
+  ],
+  "sourceFingerprints": {
+    "constants/theme.ts": "3bc9049083286596f9dba7e91f328e816d4d7982870de8f5d6271efa5987a833",
+    "constants/motion.ts": "5984f9d816ca6ab6565e4d64c0f0388c68db4fb7e8baa28ae1f90ed94e104622",
+    "components/Button.tsx": "8b9a9aeaedc5bee47206bd1840e72736a15736e39a04ef69f35b903defb7ef84",
+    "components/Input.tsx": "ad5e2e579395536ce1ae7c08239f4b105c6ea72e6f9005f6d375eb2c5c7df37b",
+    "components/PressableScale.tsx": "fe5b18a8069cc85a3f5d83eb624317b2f38b6505334cef3b1ec228389f059e8b",
+    "app/(tabs)/index.tsx": "06d1fb977befe04fd7266d31551da692eeb773a88059bdc76ff76a56ac7edfa1",
+    "app/(tabs)/_layout.tsx": "f1288178e6edbdc1fc02a9b9543b99c17ac454ca7a5b8404f4a783a277443e1e",
+    "components/LicensePlate.tsx": "98641674602a38bb15e6b161f7e4babe1b1d9f0edd87103f3df56dc4f6d83700",
+    "components/Chip.tsx": "bd62131a049513d291880f1bdc3b50eff0d4fbb31284fd302cf84261b40f85f2",
+    "components/IconButton.tsx": "c50812cea146f45c06fc20b60158c97e47d10d675e4dfb540057359bd9e3916d",
+    "components/Card.tsx": "9953363785e49d81386ff390ebef85eb3c6fa71cecffedd2a0a52d7edda5d9e0",
+    "components/RiderPlusPaywall.tsx": "41e1194c8791614e67b59fab8c300d86577af41ec8b9faf8fdaf2e2e42db42d1",
+    "contexts/FeedbackContext.tsx": "4f987ce628375e335b6d3005a077238d6298df3da3df10386e787a0fd23f887c",
+    "components/AppIcon.tsx": "6ba91710fcd7344201325b1a85c300b2bf5e890531e4a391a185b5c558f35011",
+    "components/TwoShocksSymbol.tsx": "56551144caaff7e51af6eb8724ad4507bc2b278e08e0c19878c4ddebc9c4424f",
+    "app/_layout.tsx": "a919a110f05f01dc9a8950c80642041d6297715849777dde0f8115a79820cb55"
+  }
+}

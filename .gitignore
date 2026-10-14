@@ -12,3 +12,8 @@ test-results/
 /brand-exploration/
 /output/
 /tmp/
+
+# Local design studies and verification captures
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/directions.json

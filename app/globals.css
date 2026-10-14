@@ -4,13 +4,16 @@
   --paper: #f7f7f8;
   --surface: #fff;
   --line: #e6e6ea;
-  --muted: #66666f;
+  --muted: #62626b;
   --plate: #f8cd47;
-  --green: #2e9e6b;
-  --amber: #c98a2b;
-  --red: #d6453d;
+  --green: #18794e;
+  --amber: #925b16;
+  --red: #b63830;
   --display: "Space Grotesk Variable", "Arial Narrow", sans-serif;
-  --body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --body: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --press: 120ms;
+  --release: 160ms;
   --max: 1240px;
   --gutter: clamp(20px, 4vw, 64px);
 }
@@ -66,7 +69,7 @@ img, svg { display: block; max-width: 100%; }
 .legal-hero, .draft-notice, .legal-content { width: min(100%, 820px); margin-inline: auto; }
 .legal-hero { padding-bottom: 52px; border-bottom: 1px solid #cfcfd4; }
 .legal-hero .eyebrow { color: var(--muted); }
-.legal-hero h1 { margin: 0; font: 650 clamp(52px, 7vw, 88px)/.95 var(--display); letter-spacing: -.06em; }
+.legal-hero h1 { margin: 0; font: 650 clamp(52px, 7vw, 88px)/.95 var(--display); letter-spacing: -.04em; }
 .legal-hero > p:not(.eyebrow) { max-width: 650px; margin: 26px 0 45px; color: var(--muted); font-size: 18px; }
 .legal-hero dl { margin: 0; display: flex; gap: 60px; }
 .legal-hero dl div { display: grid; gap: 4px; }
@@ -151,3 +154,25 @@ html { scroll-behavior: auto; }
 .guide-page .legal-hero .guide-byline { margin-bottom: 0; font-size: 14px; }
 .guide-page .legal-content { max-width: 740px; }
 .guide-page .legal-content p { font-size: 17px; }
+
+@media (max-width: 1250px) { .desktop-nav { display: none; } .mobile-nav { display: block; } }
+.mobile-nav nav { max-height: calc(100dvh - 100px); overflow-y: auto; }
+
+.website-statistics-control { padding: 24px; margin: 24px 0; border: 1px solid #dcdce2; border-radius: 16px; background: #f7f7f8; }
+.website-statistics-control > p:first-child { font-weight: 600; color: var(--ink); }
+.website-statistics-control button { padding: 12px 18px; min-height: 44px; border: 1px solid var(--ink); border-radius: 8px; background: var(--ink); color: #fff; font: 600 15px/1.4 var(--body); cursor: pointer; }
+.website-statistics-control button:focus-visible { outline: 3px solid #997300; outline-offset: 4px; }
+.website-statistics-control button:disabled { opacity: .6; cursor: wait; }
+.website-statistics-control > p:last-child { margin-bottom: 0; }
+
+/* Shared control feedback and browser details. Keyboard focus stays immediate. */
+html { scrollbar-color: #b8b8c0 var(--paper); }
+input, textarea { caret-color: var(--ink); }
+a, button { -webkit-tap-highlight-color: transparent; }
+button, .nav-contact { transition: transform var(--release) var(--ease-out), background-color var(--release) ease, color var(--release) ease; }
+button:active:not(:disabled), .nav-contact:active { transform: scale(.97); transition-duration: var(--press); }
+button:focus-visible:active { transform: none; }
+button:disabled { cursor: not-allowed; }
+.mobile-nav nav { transform-origin: top right; transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out); }
+@starting-style { .mobile-nav[open] nav { opacity: 0; transform: translateY(-4px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) { button:active:not(:disabled), .nav-contact:active { transform: none; } }

@@ -1,27 +1,20 @@
-.home { background: #fff; --muted: #66666f; }
-.home h1, .home h2, .home h3 { font-family: var(--display); font-weight: 650; letter-spacing: -.055em; }
+.home { background: #fff; --muted: #62626b; }
+.home h1, .home h2, .home h3 { font-family: var(--display); font-weight: 650; letter-spacing: -.035em; }
 .home h2 { font-size: clamp(36px, 4.4vw, 62px); line-height: 1.06; margin: 0; }
 .home h2 > span { color: var(--muted); }
 .home p { text-wrap: pretty; }
 .hero { padding: 154px 24px 78px; text-align: center; overflow: clip; }
 .launch { display: inline-flex; align-items: center; gap: 14px; margin: 0 0 30px; padding: 10px 16px; border: 1px solid #e4e4e8; border-radius: 10px; font-size: 15px; line-height: 1.5; color: #505059; background: #fafafa; }
 .launch > span { padding-left: 14px; border-left: 1px solid #d8d8dd; }
-.hero h1 { font-size: clamp(42px, 5.8vw, 82px); line-height: 1.03; margin: 0; letter-spacing: -.062em; }
-.hero h1 > span { color: #73737b; }
+.hero h1 { font-size: clamp(42px, 5.8vw, 82px); line-height: 1.03; margin: 0; letter-spacing: -.04em; }
+.hero h1 > span { color: var(--muted); }
 .lede { color: var(--muted); font-size: 18px; line-height: 1.6; margin: 25px auto 27px; max-width: 570px; }
-.button { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 16px 26px; border: 1px solid var(--ink); border-radius: 12px; color: white; background: var(--ink); font-weight: 600; font-size: 17px; line-height: 1.3; letter-spacing: -.01em; box-shadow: 0 2px 3px #0b0b0f0d; transition: background .2s, box-shadow .2s; }
-.button:hover { background: #35353b; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 16px 26px; border: 1px solid var(--ink); border-radius: 12px; color: white; background: var(--ink); font-weight: 600; font-size: 17px; line-height: 1.3; letter-spacing: -.01em; box-shadow: 0 2px 3px #0b0b0f0d; transition: transform var(--release) var(--ease-out), background-color var(--release) ease; }
+@media (hover: hover) and (pointer: fine) { .button:hover { background: #35353b; } }
 .button > span { color: var(--plate); font-size: 20px; }
-.heroScreens { display: flex; align-items: flex-start; justify-content: center; gap: 34px; max-width: 1120px; margin: 76px auto 0; }
-.heroScreens figure { margin: 0; width: 285px; flex: 0 0 285px; }
-.heroScreens .mainScreen { width: 315px; flex-basis: 315px; z-index: 2; }
-.sideScreen { padding-top: 58px; }
-.sideScreen:first-child { transform: rotate(-6deg); }
-.sideScreen:last-child { transform: rotate(6deg); }
-.heroScreens figcaption { margin-top: 25px; font-size: 14px; color: #64646d; }
 .device { padding: 7px; border: 1px solid #c6c6cc; border-radius: 34px; background: #fff; box-shadow: 0 22px 48px #0b0b0f12, 0 3px 6px #0b0b0f0b; overflow: hidden; }
 .device img { width: 100%; height: auto; border-radius: 27px; }
-.demoNote { margin: 36px 0 22px; font-size: 13px; color: #73737b; }
+.demoNote { margin: 36px 0 22px; font-size: 13px; color: var(--muted); }
 .availability { display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
 .email { display: inline-flex; gap: 15px; font-size: 13px; color: #585860; border-bottom: 1px solid #c6c6cc; padding-bottom: 3px; }
 .section { max-width: 1220px; margin: auto; padding: 104px 40px; scroll-margin-top: 30px; }
@@ -35,7 +28,7 @@
 .plate { font-family: var(--display); background: var(--plate); border: 2px solid var(--ink); border-radius: 7px; padding: 5px 19px; font-size: 30px; font-weight: 750; letter-spacing: .03em; box-shadow: 0 5px 0 #e5e5e9; }
 .identity { display: grid; gap: 6px; text-align: left; }
 .identity small { font-size: 12px; font-weight: 600; letter-spacing: .01em; color: #575760; }
-.identity strong { font: 650 21px var(--display); letter-spacing: -.05em; }
+.identity strong { font: 650 21px var(--display); letter-spacing: -.035em; }
 .identity > span { color: #575760; font-size: 14px; }
 .identity b { margin-left: 60px; color: var(--ink); }
 .passportSymbol { display: flex; gap: 16px; align-items: center; }
@@ -50,7 +43,7 @@
 .tabs { display: inline-flex; max-width: 100%; gap: 4px; padding: 5px; margin-bottom: 28px; background: #f0f0f2; border: 1px solid #e7e7eb; border-radius: 13px; }
 .tabs button { border: 1px solid transparent; padding: 13px 22px; border-radius: 9px; background: transparent; color: #55555e; font-size: 16px; font-weight: 550; line-height: 1.4; cursor: pointer; }
 .tabs button[aria-selected="true"] { color: var(--ink); border-color: #dedee3; background: white; box-shadow: 0 2px 4px #0b0b0f08; }
-.tabs button:hover:not([aria-selected="true"]) { background: var(--paper); }
+@media (hover: hover) and (pointer: fine) { .tabs button:hover:not([aria-selected="true"]) { background: var(--paper); } }
 .featurePanel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; background: var(--paper); border-radius: 26px; min-height: 760px; overflow: hidden; }
 .featurePanel[hidden] { display: none; }
 .featureText { padding: 55px 60px; }
@@ -101,12 +94,12 @@
 .home :global(.store-badge) { opacity: 1; background: white; color: var(--ink); border-color: #d7d7dd; cursor: default; }
 .home :global(.store-badge small) { color: #66666f; }
 @media (max-width: 900px) {
- .heroScreens { gap: 20px; } .heroScreens figure { width: 220px; flex-basis: 220px; } .heroScreens .mainScreen { width: 260px; flex-basis: 260px; }
+
  .section { padding-inline: 28px; } .featureText { padding: 35px; } .partsLayout { gap: 38px; } .darkInner { padding-inline: 28px; } .plan { padding: 22px; transform: none; } .steps { gap: 20px; } .identity strong { font-size: 17px; } .plate { font-size: 25px; } .passportSymbol { gap: 8px; } .passportSymbol strong { font-size: 14px; }
 }
 @media (max-width: 600px) {
  .hero { padding: 120px 20px 55px; } .launch { font-size: 13px; gap: 10px; padding: 9px 12px; margin-bottom: 24px; } .launch > span { padding-left: 10px; } .hero h1 { font-size: clamp(34px, 9vw, 48px); line-height: 1.07; } .hero h1 br { display: none; } .hero h1 span { display: block; } .lede { font-size: 17px; } .desktopBreak { display: none; }
- .heroScreens { gap: 15px; margin-top: 48px; } .heroScreens figure { width: 180px; flex-basis: 180px; } .heroScreens .mainScreen { width: 238px; flex-basis: 238px; } .heroScreens figcaption { font-size: 12px; } .sideScreen { padding-top: 45px; } .sideScreen figcaption { visibility: hidden; } .device { padding: 5px; border-radius: 26px; } .device img { border-radius: 21px; }
+ .device { padding: 5px; border-radius: 26px; } .device img { border-radius: 21px; }
  .demoNote { margin-top: 27px; font-size: 12px; } .availability { gap: 20px; } .section { padding: 65px 22px; } .sectionTop { margin-bottom: 30px; } .sectionTop > span { display: none; }
  .steps { grid-template-columns: 1fr; gap: 35px; margin-top: 32px; } .stepVisual { height: 140px; margin-bottom: 20px; } .steps p { max-width: none; } .plate { font-size: 32px; } .identity strong { font-size: 23px; } .passportSymbol strong { font-size: 19px; }
  .tabs { display: flex; gap: 2px; padding: 4px; } .tabs button { padding: 12px 7px; flex: 1; font-size: 14px; line-height: 1.4; } .featurePanel { grid-template-columns: 1fr; border-radius: 19px; min-height: 0; } .featureText { padding: 30px 25px 10px; } .featureText h3 { font-size: 33px; } .featureText ul { margin-bottom: 24px; } .featureScreen { padding: 25px; } .featureScreen .device { width: 270px; }
@@ -123,7 +116,7 @@
 .freePlan { background: var(--paper); }
 .plusPlan { background: white; box-shadow: inset 0 4px 0 var(--plate); }
 .planOptions h3 { font-size: 29px; line-height: 1.15; margin: 0 0 22px; }
-.price { font: 650 56px/1.15 var(--display); letter-spacing: -.05em; margin: 0; }
+.price { font: 650 56px/1.15 var(--display); letter-spacing: -.035em; margin: 0; }
 .price span { font: 400 17px/1.5 var(--body); color: #575760; letter-spacing: 0; }
 .annualPrice, .planNote { font-size: 15px; color: var(--muted); line-height: 1.7; }
 .planOptions ul { display: grid; gap: 15px; padding-left: 19px; font-size: 16px; line-height: 1.6; margin: 30px 0; }
@@ -153,7 +146,7 @@
  .price { font-size: 48px; }
  .heroActions { gap: 18px; }
  .heroNote { font-size: 14px; }
- .heroScreens { margin-top: 40px; }
+
  .faq { gap: 32px; }
 }
 
@@ -173,7 +166,7 @@
 .showcase { scroll-margin-top: 18px; }
 .tabs { padding: 3px; border-radius: 10px; }
 .tabs button { padding: 10px 18px; font-size: 15px; border-radius: 7px; font-weight: 500; }
-.featurePanel:not([hidden]) .device { animation: screenReveal 220ms ease-out; }
+.featurePanel:not([hidden]) .device { animation: screenReveal 180ms var(--ease-out); }
 @keyframes screenReveal { from { opacity: .4; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 .backToTop { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 90; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #dcdce2; border-radius: 50%; background: white; color: var(--ink); box-shadow: 0 4px 18px #00000014; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 200ms, transform 200ms, visibility 200ms; }
 .backToTop[data-visible="true"] { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -226,3 +219,50 @@
 .launch strong i { width: 7px; height: 7px; background: #151518; border-radius: 50%; }
 .launch > span { border: 0; padding: 0; color: #62626b; }
 @media (max-width: 560px) { .launch { gap: 12px; font-size: 13px; margin-bottom: 28px; } .launch strong { padding: 9px 12px; } }
+
+/* One complete phone on mobile; a rotating three-phone gallery on desktop. */
+.heroCarousel { margin: 64px auto 0; max-width: 1400px; --phone-width: clamp(315px, 24vw, 360px); --phone-spread: clamp(335px, 32vw, 460px); }
+.carouselStage { position: relative; height: calc(var(--phone-width) * 2.164 + 50px); touch-action: pan-y; user-select: none; }
+.carouselPhone { position: absolute; left: 50%; top: 22px; width: var(--phone-width); opacity: 0; transform: translateX(-50%) scale(.85); transition: transform 260ms var(--ease-out), opacity 180ms ease; pointer-events: none; }
+.carouselPhone[data-position="active"] { z-index: 3; opacity: 1; transform: translateX(calc(-50% + var(--drag, 0px))); }
+.carouselPhone[data-position="previous"] { z-index: 2; opacity: .8; transform: translateX(calc(-50% - var(--phone-spread) + var(--drag, 0px))) translateY(45px) rotate(-6deg) scale(.9); }
+.carouselPhone[data-position="next"] { z-index: 2; opacity: .8; transform: translateX(calc(-50% + var(--phone-spread) + var(--drag, 0px))) translateY(45px) rotate(6deg) scale(.9); }
+.carouselPhone[data-position="hidden"] { visibility: hidden; }
+.carouselStage[data-dragging="true"] .carouselPhone { transition: none; }
+.carouselPhone img { aspect-ratio: 1170 / 2532; object-fit: cover; }
+.carouselCaption { min-height: 132px; max-width: 540px; margin: 0 auto; }
+.carouselCaption > span { display: inline-block; font-size: 12px; font-weight: 650; background: #fff1bb; border-radius: 6px; padding: 4px 10px; }
+.home .carouselCaption h2 { margin: 12px 0 8px; font-size: 25px; line-height: 1.2; letter-spacing: -.04em; }
+.carouselCaption p { margin: 0; color: #575760; font-size: 15px; line-height: 1.6; }
+.carouselControls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 18px; }
+.carouselDots { display: flex; align-items: center; }
+.carouselDots button { display: grid; place-items: center; width: 26px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.carouselDots span { width: 20px; height: 6px; transform: scaleX(.3); background: #a7a7af; border-radius: 6px; transition: transform 180ms var(--ease-out), background-color 180ms ease; }
+.carouselDots button[aria-current="true"] span { transform: scaleX(1); background: var(--ink); }
+.carouselHint { margin: 12px 0 0; color: #66666f; font-size: 12px; }
+@media (min-width: 601px) and (max-width: 900px) {
+ .carouselPhone[data-position="previous"] { transform: translateX(calc(-50% - 250px)) translateY(45px) rotate(-6deg) scale(.82); }
+ .carouselPhone[data-position="next"] { transform: translateX(calc(-50% + 250px)) translateY(45px) rotate(6deg) scale(.82); }
+}
+@media (max-width: 600px) {
+ .heroCarousel { margin-top: 38px; }
+ .carouselStage { height: calc(min(280px, 72vw) * 2.164 + 42px); margin-inline: -20px; overflow: clip; }
+ .carouselPhone { width: min(280px, 72vw); top: 10px; }
+ .carouselPhone[data-position="previous"] { opacity: .45; transform: translateX(calc(-50% - min(280px, 72vw) - 28px + var(--drag, 0px))) scale(.94); }
+ .carouselPhone[data-position="next"] { opacity: .45; transform: translateX(calc(-50% + min(280px, 72vw) + 28px + var(--drag, 0px))) scale(.94); }
+ .carouselCaption { min-height: 145px; max-width: 340px; }
+ .home .carouselCaption h2 { font-size: 22px; }
+ .carouselCaption p { font-size: 14px; }
+ .carouselControls { gap: 6px; margin-top: 6px; }
+ .carouselDots button { width: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .carouselPhone, .carouselDots span { transition: none; }
+}
+
+/* Keyboard changes never wait for the tour animation. */
+.showcase[data-input="keyboard"] .device { animation: none; }
+.heroCarousel[data-input="keyboard"] .carouselPhone, .heroCarousel[data-input="keyboard"] .carouselDots span { transition: none; }
+.button:active { transform: scale(.97); transition-duration: var(--press); }
+.button:focus-visible:active { transform: none; }
+@media (prefers-reduced-motion: reduce) { .button:active { transform: none; } }

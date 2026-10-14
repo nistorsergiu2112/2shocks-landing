@@ -50,14 +50,13 @@ export const stores: StoreAvailability[] = [
 export const riderPlans = {
   freeBikes: 1,
   plusBikes: 5,
-  plusAnnualGbp: 29.99,
   plusMonthlyGbp: 3.99,
 } as const;
 
 export const features: Feature[] = [
   {
     id: "passport",
-    eyebrow: "Your bike, at a glance",
+    eyebrow: "Your bike, at a glance · Included in Free",
     title: "Your motorcycle passport.",
     description:
       "A bike record started from your UK registration. Find available MOT information and your next saved service plan together.",
@@ -70,7 +69,7 @@ export const features: Feature[] = [
   },
   {
     id: "planning",
-    eyebrow: "The work you’ve done",
+    eyebrow: "The work you’ve done · Included in Free",
     title: "Remember what was done.",
     description:
       "An oil change, new tyres or a workshop visit. Record the work, date and mileage while the details are fresh.",
@@ -86,8 +85,8 @@ export const features: Feature[] = [
     eyebrow: "Room for your collection",
     title: "Every bike organised in one place.",
     description:
-      "With Plus, keep up to five bikes active together. Each has its own record, so your service plans and maintenance notes stay with the right motorcycle.",
-    points: ["Up to five active motorcycles", "Separate records for every bike", "Parts and service plans for each bike"],
+      "Free includes service plans, service history and garage sheets for one active motorcycle. Upgrade to Plus for up to five active motorcycles, custom reminders, notification alerts and an ad-free experience.",
+    points: ["Up to five active motorcycles", "Custom reminders and notification alerts", "An ad-free experience"],
     screen: {
       src: "/screens/collection.webp",
       alt: "2Shocks motorcycle collection showing a separate record and capacity for five active bikes",

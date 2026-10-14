@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T21:37:09.132011+00:00",
+  "title": "Design System: 2shocks Website",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "displayName": "Ink",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.00852 285.34)",
+          "oklch(26% 0.00852 285.34)",
+          "oklch(38% 0.00852 285.34)",
+          "oklch(49% 0.00852 285.34)",
+          "oklch(61% 0.00852 285.34)",
+          "oklch(72% 0.00852 285.34)",
+          "oklch(84% 0.00852 285.34)",
+          "oklch(95% 0.00852 285.34)"
+        ]
+      },
+      "graphite": {
+        "displayName": "Graphite",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.01151 285.46)",
+          "oklch(26% 0.01151 285.46)",
+          "oklch(38% 0.01151 285.46)",
+          "oklch(49% 0.01151 285.46)",
+          "oklch(61% 0.01151 285.46)",
+          "oklch(72% 0.01151 285.46)",
+          "oklch(84% 0.01151 285.46)",
+          "oklch(95% 0.01151 285.46)"
+        ]
+      },
+      "paper": {
+        "displayName": "Paper",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.00132 286.38)",
+          "oklch(26% 0.00132 286.38)",
+          "oklch(38% 0.00132 286.38)",
+          "oklch(49% 0.00132 286.38)",
+          "oklch(61% 0.00132 286.38)",
+          "oklch(72% 0.00132 286.38)",
+          "oklch(84% 0.00132 286.38)",
+          "oklch(95% 0.00132 286.38)"
+        ]
+      },
+      "surface": {
+        "displayName": "Surface",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(26% 0.00000 89.88)",
+          "oklch(38% 0.00000 89.88)",
+          "oklch(49% 0.00000 89.88)",
+          "oklch(61% 0.00000 89.88)",
+          "oklch(72% 0.00000 89.88)",
+          "oklch(84% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      },
+      "line": {
+        "displayName": "Line",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.00537 286.29)",
+          "oklch(26% 0.00537 286.29)",
+          "oklch(38% 0.00537 286.29)",
+          "oklch(49% 0.00537 286.29)",
+          "oklch(61% 0.00537 286.29)",
+          "oklch(72% 0.00537 286.29)",
+          "oklch(84% 0.00537 286.29)",
+          "oklch(95% 0.00537 286.29)"
+        ]
+      },
+      "muted": {
+        "displayName": "Muted",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.01417 285.88)",
+          "oklch(26% 0.01417 285.88)",
+          "oklch(38% 0.01417 285.88)",
+          "oklch(49% 0.01417 285.88)",
+          "oklch(61% 0.01417 285.88)",
+          "oklch(72% 0.01417 285.88)",
+          "oklch(84% 0.01417 285.88)",
+          "oklch(95% 0.01417 285.88)"
+        ]
+      },
+      "plate": {
+        "displayName": "Plate",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.15305 90.58)",
+          "oklch(26% 0.15305 90.58)",
+          "oklch(38% 0.15305 90.58)",
+          "oklch(49% 0.15305 90.58)",
+          "oklch(61% 0.15305 90.58)",
+          "oklch(72% 0.15305 90.58)",
+          "oklch(84% 0.15305 90.58)",
+          "oklch(95% 0.15305 90.58)"
+        ]
+      },
+      "green": {
+        "displayName": "Green",
+        "role": "semantic",
+        "tonalRamp": [
+          "oklch(15% 0.11016 158.44)",
+          "oklch(26% 0.11016 158.44)",
+          "oklch(38% 0.11016 158.44)",
+          "oklch(49% 0.11016 158.44)",
+          "oklch(61% 0.11016 158.44)",
+          "oklch(72% 0.11016 158.44)",
+          "oklch(84% 0.11016 158.44)",
+          "oklch(95% 0.11016 158.44)"
+        ]
+      },
+      "amber": {
+        "displayName": "Amber",
+        "role": "semantic",
+        "tonalRamp": [
+          "oklch(15% 0.10670 66.18)",
+          "oklch(26% 0.10670 66.18)",
+          "oklch(38% 0.10670 66.18)",
+          "oklch(49% 0.10670 66.18)",
+          "oklch(61% 0.10670 66.18)",
+          "oklch(72% 0.10670 66.18)",
+          "oklch(84% 0.10670 66.18)",
+          "oklch(95% 0.10670 66.18)"
+        ]
+      },
+      "red": {
+        "displayName": "Red",
+        "role": "semantic",
+        "tonalRamp": [
+          "oklch(15% 0.16370 27.78)",
+          "oklch(26% 0.16370 27.78)",
+          "oklch(38% 0.16370 27.78)",
+          "oklch(49% 0.16370 27.78)",
+          "oklch(61% 0.16370 27.78)",
+          "oklch(72% 0.16370 27.78)",
+          "oklch(84% 0.16370 27.78)",
+          "oklch(95% 0.16370 27.78)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero heading"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step headings"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base reading text"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section kicker"
+      }
+    },
+    "shadows": [
+      {
+        "name": "cta",
+        "value": "0 2px 3px #0b0b0f0d",
+        "purpose": "Subtle CTA lift."
+      },
+      {
+        "name": "device",
+        "value": "0 22px 48px #0b0b0f12, 0 3px 6px #0b0b0f0b",
+        "purpose": "Phone-frame depth."
+      },
+      {
+        "name": "selected-tab",
+        "value": "0 2px 4px #0b0b0f08",
+        "purpose": "Selected feature tab."
+      },
+      {
+        "name": "back-to-top",
+        "value": "0 4px 18px #00000014",
+        "purpose": "Floating utility."
+      },
+      {
+        "name": "mobile-menu",
+        "value": "0 18px 50px #0008",
+        "purpose": "Dropdown over page content."
+      }
+    ],
+    "motion": [
+      {
+        "name": "press",
+        "value": "120ms",
+        "purpose": "Pointer press feedback."
+      },
+      {
+        "name": "release",
+        "value": "160ms",
+        "purpose": "Return to resting state."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23, 1, .32, 1)",
+        "purpose": "Shared control timing."
+      },
+      {
+        "name": "phone-transform",
+        "value": "260ms",
+        "purpose": "Pointer tour selection; skipped for keyboard and reduced motion."
+      },
+      {
+        "name": "phone-opacity",
+        "value": "180ms",
+        "purpose": "Phone-tour visibility."
+      },
+      {
+        "name": "feature-reveal",
+        "value": "180ms",
+        "purpose": "Pointer-selected feature reveal."
+      },
+      {
+        "name": "faq-height",
+        "value": "280ms ease",
+        "purpose": "Expand/collapse disclosure height."
+      },
+      {
+        "name": "faq-opacity",
+        "value": "220ms ease",
+        "purpose": "Disclosure visibility."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "navigation",
+        "value": "1250px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "footer-stack",
+        "value": "700px"
+      },
+      {
+        "name": "mobile",
+        "value": "600px"
+      },
+      {
+        "name": "compact-header",
+        "value": "560px"
+      }
+    ],
+    "focus": {
+      "outline": "3px solid #9b7400",
+      "outlineOffset": "4px",
+      "purpose": "Immediate visible keyboard focus."
+    },
+    "provenance": {
+      "sources": [
+        "app/globals.css",
+        "app/home.module.css",
+        "components/HeroScreens.tsx",
+        "components/PhoneShowcase.tsx"
+      ],
+      "verification": "Source extraction only; final visual and native review remains ongoing.",
+      "tonalRamps": "Synthesized OKLCH preview strips; not website tokens.",
+      "responsiveRules": "Reflect the final effective CSS cascade, including navigation at 1250px."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "html": "<a class=\"ds-cta\" href=\"#preview\">Explore the app <span>\u2192</span></a>",
+      "css": ".ds-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:16px 26px;border:1px solid var(--ink,#0b0b0f);border-radius:12px;background:var(--ink,#0b0b0f);color:white;font:600 17px/1.3 var(--body,Inter,sans-serif);letter-spacing:-.01em;text-decoration:none;box-shadow:0 2px 3px #0b0b0f0d;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 160ms ease}.ds-cta span{color:var(--plate,#f8cd47);font-size:20px}@media(hover:hover) and (pointer:fine){.ds-cta:hover{background:#35353b}}.ds-cta:focus-visible{outline:3px solid #9b7400;outline-offset:4px}.ds-cta:active{transform:scale(.97);transition-duration:120ms}.ds-cta:focus-visible:active{transform:none}@media(prefers-reduced-motion:reduce){.ds-cta{transition:none}.ds-cta:active{transform:none}}",
+      "description": "Current home CTA with fine-pointer hover, focus and press feedback."
+    },
+    {
+      "name": "Launch Tag",
+      "kind": "chip",
+      "refersTo": "launch-tag",
+      "html": "<span class=\"ds-launch\"><strong><i></i>Coming soon</strong><span>2shocks</span></span>",
+      "css": ".ds-launch{display:inline-flex;align-items:center;gap:16px;font:400 14px var(--body,Inter,sans-serif);color:#62626b}.ds-launch strong{display:inline-flex;align-items:center;gap:9px;padding:10px 17px;background:#ffda4a;color:var(--ink,#0b0b0f);border-radius:7px 7px 7px 0;transform:rotate(-2deg);box-shadow:0 3px 0 #1111110a;font-weight:650}.ds-launch i{width:7px;height:7px;border-radius:50%;background:#151518}",
+      "description": "Non-interactive informational tag; no fabricated hover state."
+    },
+    {
+      "name": "Feature Tabs",
+      "kind": "nav",
+      "refersTo": "feature-tab",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Explore\"><button role=\"tab\" aria-selected=\"true\">Passport</button><button role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">History</button><button role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Collection</button></div>",
+      "css": ".ds-tabs{display:inline-flex;gap:4px;padding:3px;border:1px solid #e7e7eb;border-radius:10px;background:#f0f0f2}.ds-tabs button{padding:10px 18px;border:1px solid transparent;border-radius:7px;background:transparent;color:#55555e;font:500 15px/1.4 var(--body,Inter,sans-serif);cursor:pointer}.ds-tabs button[aria-selected=\"true\"]{color:var(--ink,#0b0b0f);border-color:#dedee3;background:white;box-shadow:0 2px 4px #0b0b0f08}.ds-tabs button:focus-visible{outline:3px solid #9b7400;outline-offset:4px}@media(hover:hover) and (pointer:fine){.ds-tabs button:hover:not([aria-selected=\"true\"]){background:var(--paper,#f7f7f8)}}",
+      "description": "Visual tab-state preview. Roving keyboard behavior and panels are implemented by PhoneShowcase.tsx."
+    },
+    {
+      "name": "Plan Card",
+      "kind": "card",
+      "refersTo": "plan-card",
+      "html": "<article class=\"ds-plan-card\"><h3>Free</h3><p>Keep your motorcycle record together.</p></article>",
+      "css": ".ds-plan-card{padding:38px;border:1px solid #dedee5;border-radius:20px;color:var(--ink,#0b0b0f);font:400 16px/1.55 var(--body,Inter,sans-serif)}.ds-plan-card h3{margin:0;font:650 29px/1.15 var(--display,\"Space Grotesk\",sans-serif);letter-spacing:-.035em}.ds-plan-card p{color:var(--muted,#62626b)}",
+      "description": "Existing plan-card material and typography; example text is a preview label."
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "html": "<nav class=\"ds-header-nav\" aria-label=\"Main\"><a href=\"#features\">Features</a><a href=\"#plans\">Plans</a><a class=\"ds-contact\" href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-header-nav{display:flex;align-items:center;gap:26px;font:600 14px var(--body,Inter,sans-serif);color:var(--ink,#0b0b0f)}.ds-header-nav a{color:#606069;text-decoration:none;transition:color .2s ease}.ds-header-nav a:hover{color:var(--ink,#0b0b0f)}.ds-header-nav .ds-contact{padding:10px 17px;border:1px solid #d7d7dd;border-radius:10px;color:var(--ink,#0b0b0f)}.ds-header-nav a:focus-visible{outline:3px solid #9b7400;outline-offset:4px}.ds-header-nav .ds-contact:active{transform:scale(.97)}@media(prefers-reduced-motion:reduce){.ds-header-nav .ds-contact:active{transform:none}}",
+      "description": "Desktop navigation appearance; live links and mobile details menu remain in the website."
+    },
+    {
+      "name": "Carousel Controls",
+      "kind": "custom",
+      "html": "<div class=\"ds-carousel-controls\"><button aria-label=\"Previous app screen\">\u2190</button><button aria-label=\"Next app screen\">\u2192</button><button class=\"ds-pause\">Pause</button></div>",
+      "css": ".ds-carousel-controls{display:flex;align-items:center;justify-content:center;gap:12px}.ds-carousel-controls button{display:grid;place-items:center;min-width:44px;height:44px;border:1px solid #dedee5;border-radius:50%;background:white;color:var(--ink,#0b0b0f);font:400 23px var(--body,Inter,sans-serif);cursor:pointer}.ds-carousel-controls .ds-pause{border-radius:10px;font-size:13px;padding:0 12px}.ds-carousel-controls button:focus-visible{outline:3px solid #9b7400;outline-offset:4px}@media(hover:hover) and (pointer:fine){.ds-carousel-controls button:hover{background:#fff1bb}}.ds-carousel-controls button:active{transform:scale(.97)}.ds-carousel-controls button:focus-visible:active{transform:none}@media(prefers-reduced-motion:reduce){.ds-carousel-controls button:active{transform:none}}",
+      "description": "Tour-control visual preview; real pause, rotation and input behavior are owned by HeroScreens.tsx."
+    }
+  ],
+  "narrative": {
+    "northStar": "The Motorcycle Passport",
+    "overview": "Preserve the established 2shocks identity: graphite, paper and registration-plate yellow; Space Grotesk and Inter; and the existing twin-shock logo. The user rejected replacement visual directions. Refine this system through clearer hierarchy, readable metadata, consistent controls and restrained depth.\n\nThe native app helps riders operate: identify the motorcycle, understand its record and act on the next maintenance task. The sibling website persuades through larger typography and screenshots of these same flows. They share an identity, while density and control sizes follow their platform.",
+    "keyCharacteristics": [
+      "Graphite identity and white surfaces on paper.",
+      "Registration yellow as a recognizable motorcycle accent.",
+      "Space Grotesk headings and numerals; Inter for reading and controls.",
+      "Immediate content and short, interruptible feedback."
+    ],
+    "rules": [
+      {
+        "name": "Shared Identity",
+        "body": "Preserve the palette, font pairing and twin-shock logo across app and website; adapt layout and size to the platform.",
+        "section": "colors"
+      },
+      {
+        "name": "Immediate Feedback",
+        "body": "Routine content is visible immediately. Press feedback is short and interruptible; reduced motion removes unnecessary transforms.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve the twin-shock logo and the established palette and font pairing.",
+      "Do keep source app screenshots, alt text and feature descriptions in sync.",
+      "Do use the website typography clamps and responsive layout from current CSS.",
+      "Do retain source labels and distinguish official information, rider entries and parts guidance.",
+      "Do respect reduced motion and expose selected, disabled, busy and error states."
+    ],
+    "donts": [
+      "Don't introduce a replacement visual direction or logo.",
+      "Don't turn registration yellow into the default fill for every action.",
+      "Don't stagger routine screen content or delay keyboard feedback.",
+      "Don't imply that prepared garage enquiries or booking requests have already been sent."
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
+import { WebsiteAnalytics } from "@/components/WebsiteAnalytics";
 import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/inter";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         {children}
         <Footer />
-        <Analytics />
+        <WebsiteAnalytics />
       </body>
     </html>
   );

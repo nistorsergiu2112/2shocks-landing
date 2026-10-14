@@ -15,7 +15,7 @@ export function Footer() {
         </div>
         <div className="footer-links">
           <div><span>Say hello</span><a className="footer-email" href={`mailto:${contact.email}`}>{contact.email}</a><p>Questions about 2Shocks?<br />We’re an email away.</p></div>
-          <div><span>The details</span><Link href="/guides">Rider guides</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms & conditions</Link></div>
+          <div><span>The details</span><Link href="/guides">Rider guides</Link><Link href="/privacy">Website privacy</Link><Link href="/app-privacy">App privacy</Link><Link href="/terms">Website terms</Link><Link href="/app-terms">App terms</Link></div>
         </div>
       </div>
       <div className="footer-company"><div><strong>{legalEntity.name}</strong><span>Registered in England & Wales · No. {legalEntity.companyNumber}</span></div><p><span>Registered office</span>{legalEntity.registeredOffice}</p></div>
