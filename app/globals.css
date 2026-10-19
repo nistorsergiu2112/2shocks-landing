@@ -176,3 +176,6 @@ button:disabled { cursor: not-allowed; }
 .mobile-nav nav { transform-origin: top right; transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out); }
 @starting-style { .mobile-nav[open] nav { opacity: 0; transform: translateY(-4px) scale(.98); } }
 @media (prefers-reduced-motion: reduce) { button:active:not(:disabled), .nav-contact:active { transform: none; } }
+
+/* Keep legal deep links clear of the fixed navigation. */
+.legal-content section[id] { scroll-margin-top: 110px; }

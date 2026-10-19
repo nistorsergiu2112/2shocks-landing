@@ -7,9 +7,9 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   // Editorial dates: update only when the page content changes, not on every build.
   return [
-    { url: `${siteUrl}/`, lastModified: "2026-10-08" },
+    { url: `${siteUrl}/`, lastModified: "2026-10-20" },
     { url: `${siteUrl}/guides`, lastModified: "2026-09-11" },
-    ...guides.map(({ slug }) => ({ url: `${siteUrl}/guides/${slug}`, lastModified: slug === "motorcycle-service-history" ? "2026-10-08" : "2026-09-11" })),
-    ...["terms", "privacy", "app-terms", "app-privacy"].map(path => ({ url: `${siteUrl}/${path}`, lastModified: path.startsWith("app-") ? "2026-10-08" : "2026-10-03" })),
+    ...guides.map(({ slug }) => ({ url: `${siteUrl}/guides/${slug}`, lastModified: slug === "motorcycle-service-history" ? "2026-10-20" : "2026-09-11" })),
+    ...["terms", "privacy", "app-terms", "app-privacy", "delete-account", "support"].map(path => ({ url: `${siteUrl}/${path}`, lastModified: "2026-10-20" })),
   ];
 }

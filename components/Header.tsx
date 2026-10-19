@@ -11,6 +11,8 @@ const links = [
   ["App privacy", "/app-privacy"],
   ["Website terms", "/terms"],
   ["App terms", "/app-terms"],
+  ["Account deletion", "/delete-account"],
+  ["Support", "/support"],
 ];
 
 export function Header() {

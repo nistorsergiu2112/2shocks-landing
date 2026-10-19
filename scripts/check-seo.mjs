@@ -6,7 +6,7 @@ import { JSDOM } from "jsdom";
 const origin = "https://www.2shocks.com";
 const sitemap = new JSDOM(await readFile("out/sitemap.xml", "utf8"), { contentType: "text/xml" });
 const urls = [...sitemap.window.document.querySelectorAll("loc")].map(node => node.textContent);
-assert.equal(urls.length, 8);
+assert.equal(urls.length, 10);
 const titles = new Set();
 for (const url of urls) {
   assert.equal(new URL(url).origin, origin, `Wrong canonical host: ${url}`);

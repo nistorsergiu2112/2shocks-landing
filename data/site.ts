@@ -49,7 +49,7 @@ export const stores: StoreAvailability[] = [
 // Proposed launch offer. Match these values to mobile store products before launch.
 export const riderPlans = {
   freeBikes: 1,
-  plusBikes: 5,
+  plusBikes: 20,
   plusMonthlyGbp: 3.99,
 } as const;
 
@@ -85,11 +85,11 @@ export const features: Feature[] = [
     eyebrow: "Room for your collection",
     title: "Every bike organised in one place.",
     description:
-      "Free includes service plans, service history and garage sheets for one active motorcycle. Upgrade to Plus for up to five active motorcycles, custom reminders, notification alerts and an ad-free experience.",
-    points: ["Up to five active motorcycles", "Custom reminders and notification alerts", "An ad-free experience"],
+      "Free includes service plans, service history, garage sheets and automatic bike alerts for one active motorcycle. Upgrade to Plus for up to 20 active motorcycles, custom reminders and an ad-free experience.",
+    points: ["Up to 20 active motorcycles", "Custom reminders", "An ad-free experience"],
     screen: {
       src: "/screens/collection.webp",
-      alt: "2Shocks motorcycle collection showing a separate record and capacity for five active bikes",
+      alt: "2Shocks motorcycle collection showing separate records for saved motorcycles",
       label: "2Shocks Plus",
     },
   },

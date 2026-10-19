@@ -12,8 +12,8 @@ const screens = [
   { name: "plan-summary", title: "Keep the work and parts together.", tier: "Included in Free", description: "Save your plan with notes and suggested parts to confirm with a garage.", alt: "Illustrative saved service-plan summary with parts guidance and a reminder that nothing is sent automatically" },
   { name: "add-history", title: "Remember the work you’ve done.", tier: "Included in Free", description: "Add service-history records with dates, mileage and notes.", alt: "2Shocks screen for adding a completed motorcycle service-history record" },
   { name: "ready-for-garage", title: "Prepare for your next garage visit.", tier: "Included in Free", description: "Save a sheet, find a garage on Google Maps, then review and send an enquiry in your email app.", alt: "Illustrative 2Shocks service screen showing Find a garage and Create garage sheet" },
-  { name: "collection", title: "Room for your collection.", tier: "2Shocks Plus", description: "Up to five active motorcycles. Remove bikes and switch plates.", alt: "2Shocks motorcycle collection with separate bike records and capacity for five active motorcycles" },
-  { name: "notification-center", title: "Your reminders, in one place.", tier: "2Shocks Plus", description: "Custom reminders and notification alerts for your motorcycles.", alt: "Illustrative notification centre with MOT, chain maintenance and mileage reminders" },
+  { name: "collection", title: "Room for your collection.", tier: "2Shocks Plus", description: "Up to 20 active motorcycles. Remove bikes and switch plates.", alt: "2Shocks motorcycle collection with separate bike records and capacity for multiple motorcycles" },
+  { name: "notification-center", title: "Your alerts, in one place.", tier: "Automatic alerts included in Free", description: "MOT reminders, mileage check-ins and saved-parts updates. Custom reminders require Plus.", alt: "Illustrative notification centre with MOT, chain maintenance and mileage reminders" },
 ];
 
 export function HeroScreens() {

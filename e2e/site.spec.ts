@@ -57,7 +57,7 @@ test("app tour supports keyboard selection and shows the selected screen", async
   await expect(page.getByRole("tabpanel", { name: "Service history" })).toBeVisible();
   await expect(page.getByRole("tabpanel", { name: "Motorcycle passport" })).toBeHidden();
   await page.getByRole("tab", { name: "Service history" }).press("End");
-  await expect(page.getByRole("tabpanel", { name: "Your collection" })).toContainText("Up to five with 2Shocks Plus");
+  await expect(page.getByRole("tabpanel", { name: "Your collection" })).toContainText("Up to 20 with 2Shocks Plus");
 });
 
 test("navigation from legal pages returns to the correct home section", async ({ page, isMobile }) => {
@@ -170,24 +170,24 @@ test("advertising handoff serves plain text and distinct legal links", async ({ 
   await page.goto('/app-privacy');
   await expect(page.getByRole('heading', {level: 1})).toHaveText('Rider App Privacy');
   await expect(page.locator('main')).toContainText('off by default');
-  await expect(page.locator('main')).toContainText('keep access without ads');
+  await expect(page.locator('main')).toContainText('limited ads');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("website statistics can be disabled, stay disabled and be re-enabled", async ({ page }) => {
-  await page.route('**/_vercel/insights/script.js', route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  await page.route(/(?:\/_vercel\/insights\/script\.js|vercel-scripts\.com\/.*script\.debug\.js)/, route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
   await page.goto('/privacy');
   await expect(page.getByRole('status')).toContainText('on in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(1);
+  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(1);
   await page.getByRole('button', { name: 'Turn off website statistics', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('off in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(0);
+  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(0);
   await page.goto('/');
-  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(0);
+  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(0);
   await page.goto('/privacy');
   await page.getByRole('button', { name: 'Turn on website statistics', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('on in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"]')).toHaveCount(1);
+  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(1);
 });
 
 test("hero gallery offers every screen without changing plan benefits", async ({ page }, testInfo) => {
@@ -201,6 +201,7 @@ test("hero gallery offers every screen without changing plan benefits", async ({
     await expect(slide.getByRole('img')).toBeVisible();
     await expect.poll(() => slide.getByRole('img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
   }
+  await gallery.getByRole('button', { name: 'Show Room for your collection.' }).click();
   await expect(gallery).toContainText('2Shocks Plus');
   await gallery.getByRole('button', { name: 'Show Prepare for your next garage visit.' }).click();
   await expect(gallery).toContainText('Included in Free');
