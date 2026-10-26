@@ -196,19 +196,19 @@ test("advertising handoff serves plain text and distinct legal links", async ({ 
 });
 
 test("website statistics can be disabled, stay disabled and be re-enabled", async ({ page }) => {
-  await page.route(/(?:\/_vercel\/insights\/script\.js|vercel-scripts\.com\/.*script\.debug\.js)/, route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
+  await page.route(/(?:\/(?:_vercel\/insights|[a-f0-9]{16})\/script\.js|vercel-scripts\.com\/.*script\.debug\.js)/, route => route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
   await page.goto('/privacy');
   await expect(page.getByRole('status')).toContainText('on in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(1);
+  await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(1);
   await page.getByRole('button', { name: 'Turn off website statistics', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('off in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(0);
+  await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(0);
   await page.goto('/');
-  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(0);
+  await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(0);
   await page.goto('/privacy');
   await page.getByRole('button', { name: 'Turn on website statistics', exact: true }).click();
   await expect(page.getByRole('status')).toContainText('on in this browser');
-  await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(1);
+  await expect(page.locator('script[data-sdkn^="@vercel/analytics"]')).toHaveCount(1);
 });
 
 test("hero presents one composition of real phone screens without store-panel captions", async ({ page }, testInfo) => {
