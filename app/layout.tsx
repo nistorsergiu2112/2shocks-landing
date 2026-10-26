@@ -9,7 +9,7 @@ import { siteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "2Shocks | Motorcycle Maintenance & MOT History App", template: "%s | 2Shocks" },
+  title: { default: "2Shocks: Motorbike Maintenance, MOT & Service History", template: "%s | 2Shocks" },
   applicationName: "2Shocks",
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },

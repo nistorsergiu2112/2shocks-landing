@@ -10,20 +10,27 @@ test("loopback preview loads interactive scripts and responds to controls", asyn
     if (response.url().includes("/_next/") && response.status() === 403) blockedScripts.push(response.url());
   });
   await page.goto(preview.href);
-  await page.getByRole("tab", { name: "Service history" }).click();
-  await expect(page.getByRole("tabpanel", { name: "Service history" })).toBeVisible();
-  await page.getByRole("button", { name: "Show Start with your number plate." }).click();
-  await expect(page.getByRole("group", { name: /2 of 9/ })).toBeVisible();
+  if (page.viewportSize()!.width <= 600) {
+    await page.getByText("Parts & maintenance plans", { exact: true }).click();
+    await expect(page.getByLabel("Rider app features")).toContainText("confirm suitability");
+  } else {
+    await page.getByRole("tab", { name: "Service history" }).click();
+    await expect(page.getByRole("tabpanel", { name: "Service history" })).toBeVisible();
+  }
+  await expect(page.getByRole("group", { name: "2Shocks iPhone app previews with example records" }).getByRole("img")).toHaveCount(3);
   expect(blockedScripts).toEqual([]);
 });
 
-test("home presents the rider app and coming-soon state", async ({ page }) => {
+test("home presents Android availability and keeps iOS coming soon", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your bike’s history.");
-  await expect(page.getByLabel("App Store — coming soon").first()).toHaveAttribute("aria-disabled", "true");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Your motorbike’s service book,");
+  await expect(page.getByLabel("App Store — coming soon").first()).toBeVisible();
   await expect(page.getByRole("link", { name: /Ask us a question/ })).toHaveAttribute("href", "mailto:info@2shocks.com");
-  await expect(page.getByRole("link", { name: "Contact 2Shocks" })).toHaveAttribute("href", /mailto:info@2shocks\.com\?subject=2Shocks%20enquiry/);
-  await expect(page.locator("#launch")).toContainText("Opens your email app");
+  const downloads = page.getByRole("link", { name: "Get it on Google Play", exact: true });
+  expect(await downloads.count()).toBeGreaterThanOrEqual(5);
+  for (const link of await downloads.all()) await expect(link).toHaveAttribute("href", "https://play.google.com/store/apps/details?id=com.twoshocks.app");
+  await expect(page.locator('a[href*="apps.apple.com"], a[href*="testflight"], form')).toHaveCount(0);
+  await expect(page.locator("#launch")).toContainText("An account and internet connection are required");
   await expect(page.getByRole("link", { name: /book a garage|find a garage/i })).toHaveCount(0);
   await page.getByRole("button", { name: "Can I book a garage through the app?" }).click();
   await expect(page.getByRole("region", { name: "Can I book a garage through the app?" })).toContainText("Garage booking isn’t part of the first release");
@@ -43,6 +50,7 @@ test("mobile navigation and internal links are reachable", async ({ page, isMobi
   await page.goto("/");
   await page.getByLabel("Open navigation").click();
   await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Get it on Google Play" })).toHaveAttribute("href", "https://play.google.com/store/apps/details?id=com.twoshocks.app");
   await page.getByRole("link", { name: "Features" }).last().click();
   await expect(page.locator("#features")).toBeInViewport();
   await expect(page.getByRole("navigation", { name: "Mobile navigation" })).not.toBeVisible();
@@ -50,6 +58,17 @@ test("mobile navigation and internal links are reachable", async ({ page, isMobi
 
 test("app tour supports keyboard selection and shows the selected screen", async ({ page }) => {
   await page.goto("/");
+  if (page.viewportSize()!.width <= 600) {
+    const features = page.getByLabel("Rider app features");
+    const summary = features.getByText("Your bike’s history", { exact: true });
+    await summary.focus();
+    await summary.press("Enter");
+    await expect(features.locator('details').first()).toHaveAttribute('open', '');
+    await expect(features.getByText(/Start with a UK registration/)).toBeVisible();
+    await summary.press("Enter");
+    await expect(features.locator('details').first()).not.toHaveAttribute('open');
+    return;
+  }
   const tab = page.getByRole("tab", { name: "Motorcycle passport" });
   await tab.focus();
   await tab.press("ArrowRight");
@@ -132,19 +151,21 @@ test("FAQ toggles accessibly and back to top returns focus", async ({ page }) =>
   await expect(page.locator("#main-content")).toBeFocused();
 });
 
-test("mobile tour keeps the complete phone in view after switching", async ({ page, isMobile }) => {
-  test.skip(!isMobile, "mobile tour layout");
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  for (const name of ["Service history", "Your collection", "Motorcycle passport"]) {
-    await page.getByRole("tab", { name, exact: true }).click();
-    const image = page.getByRole("tabpanel").getByRole("img");
-    await expect(image).toBeInViewport({ ratio: 1 });
-  }
+test("mobile features stay compact and the complete hero phone stays in view", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "mobile feature layout");
+  await page.goto('/');
+  await expect(page.getByRole('tablist')).toHaveCount(0);
+  const features = page.getByLabel('Rider app features');
+  await expect(features.locator('details')).toHaveCount(3);
+  await expect(features.locator('details[open]')).toHaveCount(0);
+  const phone = page.locator('[data-mobile-position="active"] img');
+  await phone.scrollIntoViewIfNeeded();
+  await expect(phone).toBeInViewport({ratio: 1});
 });
 
 test("rider guides are linked, readable and accessible", async ({ page }) => {
   await page.goto("/");
+  if (page.viewportSize()!.width <= 600) await page.locator('footer').getByRole('link', { name: 'Rider guides' }).click();
   await page.getByRole("link", { name: "How to check a motorcycle’s MOT history", exact: true }).click();
   await expect(page).toHaveURL(/\/guides\/motorcycle-mot-history$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("How to check a motorcycle’s MOT history");
@@ -190,71 +211,133 @@ test("website statistics can be disabled, stay disabled and be re-enabled", asyn
   await expect(page.locator('script[src*="/_vercel/insights/"], script[src*="vercel-scripts.com/"]')).toHaveCount(1);
 });
 
-test("hero gallery offers every screen without changing plan benefits", async ({ page }, testInfo) => {
+test("hero presents one composition of real phone screens without store-panel captions", async ({ page }, testInfo) => {
   await page.goto('/');
-  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
-  await gallery.scrollIntoViewIfNeeded();
-  for (const button of await gallery.getByRole('button', { name: /^Show / }).all()) {
-    await button.click();
-    const slide = gallery.getByRole('group', { name: /of 9/ });
-    await expect(slide).toHaveCount(1);
-    await expect(slide.getByRole('img')).toBeVisible();
-    await expect.poll(() => slide.getByRole('img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  const art = page.getByRole('group', { name: '2Shocks iPhone app previews with example records' });
+  await expect(art.getByRole('img')).toHaveCount(3);
+  for (const image of await art.getByRole('img').all()) {
+    await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute('src', /-capture\.png/);
+    await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth === 1206)).toBe(true);
+    const ratio = await image.evaluate(el => el.getBoundingClientRect().width / el.getBoundingClientRect().height);
+    // Rotation changes bounding boxes; source proportions are preserved by height:auto.
+    expect(ratio).toBeGreaterThan(0.4);
+    expect(ratio).toBeLessThan(0.8);
   }
-  await gallery.getByRole('button', { name: 'Show Room for your collection.' }).click();
-  await expect(gallery).toContainText('2Shocks Plus');
-  await gallery.getByRole('button', { name: 'Show Prepare for your next garage visit.' }).click();
-  await expect(gallery).toContainText('Included in Free');
-  await expect(gallery).toContainText('review and send an enquiry in your email app');
-  await expect(gallery.getByRole('button')).toHaveCount(9);
+  const foreground = art.locator('[data-screen="history"]');
+  await expect(foreground).toHaveCSS('transform', 'none');
+  await expect(art.getByRole('link')).toHaveCount(3);
+  for (const link of await art.getByRole('link').all()) {
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('href', /-capture\.png$/);
+  }
+  const sourcePixels = await foreground.getByRole('img').evaluate((el: HTMLImageElement) => ({
+    width: el.naturalWidth, displayWidth: el.getBoundingClientRect().width, dpr: devicePixelRatio,
+  }));
+  expect(sourcePixels.width).toBeGreaterThanOrEqual(sourcePixels.displayWidth * sourcePixels.dpr);
+  await foreground.focus();
+  const popupPromise = page.waitForEvent('popup');
+  await foreground.press('Enter');
+  const fullSize = await popupPromise;
+  await fullSize.waitForLoadState();
+  await expect(fullSize).toHaveURL(/01-service-history-capture\.png$/);
+  await expect.poll(() => fullSize.locator('img').evaluate((el: HTMLImageElement) => el.naturalWidth)).toBe(1206);
+  await fullSize.close();
+  await expect(art.getByRole('button')).toHaveCount(0);
+  const hero = page.locator('main > section').first();
+  await expect(hero).not.toContainText('Explore the app, one screen at a time');
+  await expect(hero).not.toContainText('development build');
+  await expect(hero).not.toContainText('Android promotional panels');
+  await expect(hero).not.toContainText('View full-size preview');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await gallery.screenshot({ path: testInfo.outputPath('gallery.png') });
+  await hero.screenshot({ path: testInfo.outputPath('hero-composition.png') });
 });
 
-test("mobile hero supports horizontal swipe without clipping the selected phone", async ({ page, isMobile }) => {
-  test.skip(!isMobile, 'touch interaction');
+
+test("mobile hero swipes through complete phones and keeps full-resolution links usable", async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'mobile touch composition');
   await page.goto('/');
-  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
-  const phone = gallery.getByRole('group', { name: /1 of 9/ });
-  await phone.scrollIntoViewIfNeeded();
-  await expect(phone.getByRole('img')).toBeInViewport({ ratio: 1 });
-  const stage = gallery.locator('[data-dragging]');
-  await stage.dispatchEvent('pointerdown', { pointerId: 1, pointerType: 'touch', clientX: 260, clientY: 300 });
-  await stage.dispatchEvent('pointermove', { pointerId: 1, pointerType: 'touch', clientX: 130, clientY: 305 });
-  await stage.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', clientX: 130, clientY: 305 });
-  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
-  await expect(gallery).toContainText('Start with your number plate.');
-  await stage.dispatchEvent('pointerdown', { pointerId: 2, pointerType: 'touch', clientX: 130, clientY: 300 });
-  await stage.dispatchEvent('pointermove', { pointerId: 2, pointerType: 'touch', clientX: 260, clientY: 305 });
-  await stage.dispatchEvent('pointerup', { pointerId: 2, pointerType: 'touch', clientX: 260, clientY: 305 });
-  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
-  await expect(gallery.getByRole('button')).toHaveCount(9);
+  const art = page.getByRole('group', { name: '2Shocks iPhone app previews with example records' });
+  await expect(art).toHaveAttribute('aria-roledescription', 'carousel');
+  await art.scrollIntoViewIfNeeded();
+  const touch = await page.context().newCDPSession(page);
+  async function swipe(direction: 'left' | 'right') {
+    const bounds = await art.locator('[data-mobile-position="active"]').boundingBox();
+    if (!bounds) throw new Error('Missing selected phone');
+    const y = bounds.y + bounds.height / 2;
+    const center = bounds.x + bounds.width / 2;
+    const start = center + (direction === 'left' ? 65 : -65);
+    const end = center + (direction === 'left' ? -65 : 65);
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: start, y }] });
+    for (let step = 1; step <= 6; step++) {
+      await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: start + (end - start) * step / 6, y }] });
+    }
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  }
+  for (const [direction, screen] of [['left', 'plan'], ['left', 'mot'], ['left', 'history'], ['right', 'mot']] as const) {
+    await swipe(direction);
+    const selected = art.locator('[data-mobile-position="active"]');
+    await expect(selected).toHaveAttribute('data-screen', screen);
+    await expect(selected.getByRole('img')).toBeInViewport({ ratio: 1 });
+    await expect.poll(() => selected.evaluate(el => {
+      const phone = el.getBoundingClientRect();
+      const stage = el.parentElement!.getBoundingClientRect();
+      return phone.bottom <= stage.bottom && phone.left >= stage.left && phone.right <= stage.right;
+    })).toBe(true);
+    expect(page.context().pages()).toHaveLength(1);
+  }
+  const scrollBefore = await page.evaluate(() => scrollY);
+  const phone = await art.locator('[data-mobile-position="active"]').boundingBox();
+  if (!phone) throw new Error('Missing selected phone');
+  const x = phone.x + phone.width / 2;
+  const y = phone.y + phone.height / 2;
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: y + 60 }] });
+  for (let step = 1; step <= 6; step++) {
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: y + 60 - step * 20 }] });
+  }
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scrollBefore + 10);
+  await expect(art.locator('[data-mobile-position="active"]')).toHaveAttribute('data-screen', 'mot');
+  const selected = art.locator('[data-mobile-position="active"]');
+  await selected.focus();
+  await selected.press('ArrowLeft');
+  await expect(art.locator('[data-mobile-position="active"]')).toHaveAttribute('data-screen', 'plan');
+  await expect(art.locator('[data-mobile-position="active"]')).toBeFocused();
+  await expect(art.locator('[aria-live="polite"]')).toHaveText('motorcycle and service plan preview, 2 of 3');
+  const original = page.waitForEvent('popup');
+  await art.locator('[data-mobile-position="active"]').press('Enter');
+  const fullSize = await original;
+  await expect(fullSize).toHaveURL(/03-service-plan-capture\.png$/);
+  await fullSize.close();
+  await touch.detach();
 });
 
-test("desktop hero rotates every five seconds and honours focus and reduced motion", async ({ page, isMobile }) => {
-  test.skip(isMobile, 'desktop rotation');
-  await page.clock.install();
+test("mobile hero height follows its phone at wide mobile widths and short viewports", async ({ page }) => {
   await page.goto('/');
-  const gallery = page.getByRole('region', { name: '2Shocks feature screens' });
-  await gallery.scrollIntoViewIfNeeded();
-  await page.mouse.move(0, 0);
-  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
-  await page.clock.runFor(4900);
-  await expect(gallery.getByRole('group', { name: /1 of 9/ })).toBeVisible();
-  await page.clock.runFor(1100);
-  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
-  await gallery.getByRole('button', { name: 'Show Start with your number plate.' }).focus();
-  await page.mouse.move(0, 0);
-  await page.clock.runFor(20000);
-  await expect(gallery.getByRole('group', { name: /2 of 9/ })).toBeVisible();
-  await page.locator('h1').click();
-  await gallery.scrollIntoViewIfNeeded();
-  await page.mouse.move(0, 0);
-  await page.clock.runFor(5100);
-  await expect(gallery.getByRole('group', { name: /3 of 9/ })).toBeVisible();
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.clock.runFor(10000);
-  await expect(gallery.getByRole('group', { name: /3 of 9/ })).toBeVisible();
-  await gallery.getByRole('button', { name: 'Show Choose the work to discuss.' }).click();
-  await expect(gallery.getByRole('group', { name: /4 of 9/ })).toBeVisible();
+  for (const [width, height] of [[320, 568], [390, 664], [430, 740], [600, 900], [600, 500]]) {
+    await page.setViewportSize({ width, height });
+    const art = page.getByRole('group', { name: '2Shocks iPhone app previews with example records' });
+    await art.scrollIntoViewIfNeeded();
+    const selected = art.locator('[data-mobile-position="active"]');
+    await expect(selected.getByRole('img')).toBeInViewport({ ratio: 1 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await selected.evaluate(el => el.getBoundingClientRect().bottom <= el.parentElement!.getBoundingClientRect().bottom)).toBe(true);
+  }
+});
+
+
+test("mobile hides repeated long sections while retaining the core offer and help", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto('/');
+  const mobileHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  for (const id of ['parts-estimates', 'parts-matching', 'rider-guides']) await expect(page.locator(`#${id}`)).toBeHidden();
+  await expect(page.getByRole('tablist')).toHaveCount(0);
+  for (const id of ['how-it-works', 'features', 'plans', 'questions', 'launch']) await expect(page.locator(`#${id}`)).toBeVisible();
+  await expect(page.locator('#plans')).toContainText('Up to 20 active motorcycles');
+  for (const path of ['/app-privacy', '/app-terms', '/delete-account', '/support', '/guides']) await expect(page.locator(`footer a[href="${path}"]`)).toBeVisible();
+  expect(mobileHeight).toBeLessThan(7500);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const id of ['parts-estimates', 'parts-matching', 'rider-guides']) await expect(page.locator(`#${id}`)).toBeVisible();
+  await expect(page.getByRole('tablist')).toBeVisible();
+  await expect(page.getByLabel('Rider app features')).toBeHidden();
 });

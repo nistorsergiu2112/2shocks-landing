@@ -220,49 +220,104 @@
 .launch > span { border: 0; padding: 0; color: #62626b; }
 @media (max-width: 560px) { .launch { gap: 12px; font-size: 13px; margin-bottom: 28px; } .launch strong { padding: 9px 12px; } }
 
-/* One complete phone on mobile; a rotating three-phone gallery on desktop. */
-.heroCarousel { margin: 64px auto 0; max-width: 1400px; --phone-width: clamp(315px, 24vw, 360px); --phone-spread: clamp(335px, 32vw, 460px); }
-.carouselStage { position: relative; height: calc(var(--phone-width) * 2.164 + 50px); touch-action: pan-y; user-select: none; }
-.carouselPhone { position: absolute; left: 50%; top: 22px; width: var(--phone-width); opacity: 0; transform: translateX(-50%) scale(.85); transition: transform 260ms var(--ease-out), opacity 180ms ease; pointer-events: none; }
-.carouselPhone[data-position="active"] { z-index: 3; opacity: 1; transform: translateX(calc(-50% + var(--drag, 0px))); }
-.carouselPhone[data-position="previous"] { z-index: 2; opacity: .8; transform: translateX(calc(-50% - var(--phone-spread) + var(--drag, 0px))) translateY(45px) rotate(-6deg) scale(.9); }
-.carouselPhone[data-position="next"] { z-index: 2; opacity: .8; transform: translateX(calc(-50% + var(--phone-spread) + var(--drag, 0px))) translateY(45px) rotate(6deg) scale(.9); }
-.carouselPhone[data-position="hidden"] { visibility: hidden; }
-.carouselStage[data-dragging="true"] .carouselPhone { transition: none; }
-.carouselPhone img { aspect-ratio: 1170 / 2532; object-fit: cover; }
-.carouselCaption { min-height: 132px; max-width: 540px; margin: 0 auto; }
-.carouselCaption > span { display: inline-block; font-size: 12px; font-weight: 650; background: #fff1bb; border-radius: 6px; padding: 4px 10px; }
-.home .carouselCaption h2 { margin: 12px 0 8px; font-size: 25px; line-height: 1.2; letter-spacing: -.04em; }
-.carouselCaption p { margin: 0; color: #575760; font-size: 15px; line-height: 1.6; }
-.carouselControls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 18px; }
-.carouselDots { display: flex; align-items: center; }
-.carouselDots button { display: grid; place-items: center; width: 26px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
-.carouselDots span { width: 20px; height: 6px; transform: scaleX(.3); background: #a7a7af; border-radius: 6px; transition: transform 180ms var(--ease-out), background-color 180ms ease; }
-.carouselDots button[aria-current="true"] span { transform: scaleX(1); background: var(--ink); }
-.carouselHint { margin: 12px 0 0; color: #66666f; font-size: 12px; }
-@media (min-width: 601px) and (max-width: 900px) {
- .carouselPhone[data-position="previous"] { transform: translateX(calc(-50% - 250px)) translateY(45px) rotate(-6deg) scale(.82); }
- .carouselPhone[data-position="next"] { transform: translateX(calc(-50% + 250px)) translateY(45px) rotate(6deg) scale(.82); }
+/* Hero: one composed spread of actual app screens, with no carousel. */
+.hero { padding: 130px 0 68px; text-align: left; overflow: clip; background: var(--paper); }
+.heroInner { position: relative; max-width: 1440px; margin: 0 auto; min-height: 760px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.heroCopy { position: relative; z-index: 4; padding: 18px 0 38px clamp(28px, 5vw, 80px); }
+.hero .launch { margin-bottom: 32px; }
+.hero h1 { font-size: clamp(54px, 5.4vw, 78px); line-height: 1.02; letter-spacing: -.04em; }
+.hero h1 > span { color: var(--ink); }
+.hero .lede { max-width: 475px; margin: 28px 0 24px; font-size: 18px; }
+.heroActions { justify-content: flex-start; gap: 22px; }
+.heroActions :global(.google-play-badge) { padding-left: 0; }
+.heroNote { margin: 18px 0 0; align-items: flex-start; }
+.heroArtwork { position: relative; height: 760px; width: 100%; isolation: isolate; }
+.artworkPlate { position: absolute; z-index: -1; width: 1080px; height: 460px; left: -60px; top: 220px; border-radius: 48px; background: var(--plate); transform: rotate(-18deg); }
+.artworkPhone { position: absolute; display: block; cursor: zoom-in; width: 256px; padding: 7px; background: #0b0b0f; border-radius: 42px; box-shadow: 0 30px 55px #0b0b0f26, 0 7px 14px #0b0b0f1a; }
+.artworkPhone img { display: block; width: 100%; height: auto; border-radius: 35px; }
+.artworkPhone[data-screen="mot"] { left: -14px; top: 190px; transform: rotate(-12deg); z-index: 1; }
+.artworkPhone[data-screen="plan"] { left: 424px; top: 72px; transform: rotate(12deg); z-index: 2; }
+.artworkPhone[data-screen="history"] { left: 178px; top: 70px; width: 320px; z-index: 3; }
+.screenLink { display: inline-block; margin-top: 12px; padding: 8px; text-decoration: underline; text-underline-offset: 4px; font-size: 14px; }
+.showcase[data-input="keyboard"] .device { animation: none; }
+@media (min-width: 1600px) { .hero { padding-top: 150px; } }
+@media (min-width: 901px) and (max-width: 1200px) {
+ .heroCopy { padding-left: 40px; }
+ .hero h1 { font-size: clamp(49px, 5.1vw, 64px); }
+ /* Use real dimensions instead of scaling a composited screenshot layer. */
+ .artworkPhone { width: 218px; padding: 6px; border-radius: 36px; }
+ .artworkPhone img { border-radius: 30px; }
+ .artworkPhone[data-screen="mot"] { left: -12px; top: 192px; }
+ .artworkPhone[data-screen="plan"] { left: 360px; top: 92px; }
+ .artworkPhone[data-screen="history"] { left: 150px; top: 100px; width: 272px; }
+ .hero .lede { max-width: 390px; padding-right: 10px; }
+}
+@media (max-width: 900px) {
+ .hero { padding-top: 132px; padding-bottom: 10px; }
+ .heroInner { grid-template-columns: 1fr; min-height: 0; }
+ .heroCopy { padding: 0 28px; text-align: center; }
+ .hero h1 { font-size: clamp(44px, 7.8vw, 68px); }
+ .hero h1 br { display: initial; }
+ .hero .lede { max-width: 540px; margin: 24px auto; }
+ .heroActions { justify-content: center; }
+ .heroNote { margin-top: 14px; align-items: center; }
+ .heroArtwork { width: 700px; height: 750px; margin: 8px auto 0; }
+ .artworkPlate { width: 1100px; left: -180px; top: 220px; }
+ .artworkPhone[data-screen="mot"] { left: 14px; top: 145px; }
+ .artworkPhone[data-screen="plan"] { left: 438px; top: 95px; }
+ .artworkPhone[data-screen="history"] { left: 190px; top: 42px; }
 }
 @media (max-width: 600px) {
- .heroCarousel { margin-top: 38px; }
- .carouselStage { height: calc(min(280px, 72vw) * 2.164 + 42px); margin-inline: -20px; overflow: clip; }
- .carouselPhone { width: min(280px, 72vw); top: 10px; }
- .carouselPhone[data-position="previous"] { opacity: .45; transform: translateX(calc(-50% - min(280px, 72vw) - 28px + var(--drag, 0px))) scale(.94); }
- .carouselPhone[data-position="next"] { opacity: .45; transform: translateX(calc(-50% + min(280px, 72vw) + 28px + var(--drag, 0px))) scale(.94); }
- .carouselCaption { min-height: 145px; max-width: 340px; }
- .home .carouselCaption h2 { font-size: 22px; }
- .carouselCaption p { font-size: 14px; }
- .carouselControls { gap: 6px; margin-top: 6px; }
- .carouselDots button { width: 24px; }
+ .hero { padding-top: 112px; }
+ .heroCopy { padding-inline: 22px; }
+ .hero .launch { margin-bottom: 26px; gap: 12px; }
+ .hero h1 { font-size: clamp(37px, 9.8vw, 56px); line-height: 1.04; }
+ .hero h1 br:first-of-type { display: initial; }
+ .hero h1 br:last-of-type { display: none; }
+ .hero h1 span { display: block; }
+ .hero .lede { font-size: 16px; margin-top: 22px; margin-bottom: 18px; }
+ .heroActions { gap: 12px; }
+ .heroActions :global(.google-play-badge) { padding: 10px; }
+ .secondaryLink { font-size: 14px; }
+ .heroNote { margin-top: 14px; }
+ .heroArtwork {
+   --mobile-phone-width: min(62vw, calc((100svh - 96px) * (1206 / 2622)));
+   --mobile-phone-height: calc((var(--mobile-phone-width) - 10px) * (2622 / 1206) + 10px);
+   width: 100%; height: calc(var(--mobile-phone-height) + 80px); margin-top: 32px;
+   touch-action: pan-y pinch-zoom; user-select: none;
+ }
+ .artworkPlate { left: -40%; top: 164px; height: 285px; width: 180%; border-radius: 28px; }
+ .artworkPhone { padding: 5px; border-radius: 28px; translate: var(--swipe-offset, 0px) 0; transition: left 280ms var(--ease-out), top 280ms var(--ease-out), width 280ms var(--ease-out), transform 280ms var(--ease-out), translate 180ms var(--ease-out); -webkit-user-drag: none; }
+ .artworkPhone img { border-radius: 23px; }
+ .artworkPhone[data-mobile-position="previous"] { left: calc(50% - var(--mobile-phone-width) * 1.05); top: calc(24px + var(--mobile-phone-height) * .13); width: calc(var(--mobile-phone-width) * .694); transform: rotate(-14deg); z-index: 1; }
+ .artworkPhone[data-mobile-position="next"] { left: calc(50% + var(--mobile-phone-width) * .387); top: calc(24px + var(--mobile-phone-height) * .08); width: calc(var(--mobile-phone-width) * .694); transform: rotate(14deg); z-index: 2; }
+ .artworkPhone[data-mobile-position="active"] { left: calc(50% - var(--mobile-phone-width) / 2); top: 24px; width: var(--mobile-phone-width); transform: none; z-index: 3; }
+ .heroArtwork[data-dragging="true"] .artworkPhone { transition: none; }
 }
-@media (prefers-reduced-motion: reduce) {
- .carouselPhone, .carouselDots span { transition: none; }
-}
-
-/* Keyboard changes never wait for the tour animation. */
-.showcase[data-input="keyboard"] .device { animation: none; }
-.heroCarousel[data-input="keyboard"] .carouselPhone, .heroCarousel[data-input="keyboard"] .carouselDots span { transition: none; }
+.artworkStatus { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 374px) { .heroActions { gap: 0; } }
+@media (prefers-reduced-motion: reduce) { .artworkPhone { transition: none; } }
 .button:active { transform: scale(.97); transition-duration: var(--press); }
 .button:focus-visible:active { transform: none; }
 @media (prefers-reduced-motion: reduce) { .button:active { transform: none; } }
+
+/* Mobile keeps the decision path short; detailed desktop sections stay intact. */
+.mobileIntro, .mobileFeatures, .home .mobilePlanBenefits { display: none; }
+@media (max-width: 600px) {
+ .home .desktopDetail { display: none; }
+ .mobileIntro { display: block; font-size: 17px; line-height: 1.65; color: var(--muted); margin: 24px 0 0; }
+ .mobileFeatures { display: block; margin-top: 28px; }
+ .mobileFeatures details { border-top: 1px solid var(--line); }
+ .mobileFeatures details:last-child { border-bottom: 1px solid var(--line); }
+ .mobileFeatures summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; list-style: none; padding: 20px 0; font-size: 17px; font-weight: 600; }
+ .mobileFeatures summary::-webkit-details-marker { display: none; }
+ .mobileFeatures summary::after { content: "+"; font-size: 24px; line-height: 1; font-weight: 400; }
+ .mobileFeatures details[open] summary::after { content: "−"; }
+ .mobileFeatures p { font-size: 16px; line-height: 1.65; color: var(--muted); margin: 0 0 22px; }
+ .home .mobilePlanBenefits { display: grid; }
+ .home .section { padding-top: 44px; padding-bottom: 44px; }
+ .home .sectionTop { margin-bottom: 18px; }
+ .home .planOptions { margin-top: 28px; }
+ .home .closing { padding-top: 44px; padding-bottom: 44px; }
+ .home .closing h2 { font-size: 46px; }
+}

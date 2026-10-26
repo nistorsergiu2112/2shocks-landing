@@ -134,7 +134,7 @@ Preserve meaningful hierarchy across small screens. Existing mobile feature head
 
 ## Layout
 
-The global container is capped at (1240px), with fluid gutters carried in frontmatter. Home sections cap at (1220px); their desktop and mobile padding are recorded as existing spacing tokens. The hero centers its message and phone tour; feature, plan and FAQ sections use responsive grids.
+The global container is capped at (1240px), with fluid gutters carried in frontmatter. Home sections cap at (1220px); their desktop and mobile padding are recorded as existing spacing tokens. The hero pairs its message and phone composition on desktop and centers them in a stacked layout on smaller screens; feature, plan and FAQ sections use responsive grids.
 
 At the (900px) breakpoint section insets narrow and gaps reduce. At (600px), feature panels and plan/FAQ grids stack, compact tab labels appear and the screenshot precedes feature copy. Navigation uses its effective final switch at (1250px), not earlier superseded declarations in the stylesheet. The header becomes shorter at (560px); footer grids stack at (700px).
 
@@ -168,13 +168,21 @@ Plan cards use a border and the existing card corner and padding; mobile padding
 
 Desktop uses horizontal Inter links and an outlined contact action. Smaller widths use an accessible native details menu with a dark dropdown and scrollable height. The footer retains the shared brand, readable contact details and grouped links.
 
+### Mobile Content Density
+
+At widths up to 600px, keep the download hero, a short introduction, three native expandable feature summaries, a compact Free/Plus comparison, FAQs and closing action. Hide the repeated desktop walkthrough illustrations, second phone tour and source-data facts, separate parts-estimate/matching sections, large garage-plan example and guide cards. The guide directory and all support/app/website policy links remain accessible in the footer. Hidden content uses display:none so its controls are not in the mobile keyboard path. Expanded summaries retain coverage, fitment, retail-price and rider-sent-enquiry qualifications. Desktop retains its complete content.
+
 ### Feature Tabs
+
+The detailed tabbed tour is shown above the mobile breakpoint; narrow mobile screens use the compact native feature disclosures instead.
 
 A neutral track contains compact labels; selected tabs use white, a border and subtle shadow. The tablist uses arrow keys, Home and End with a roving tab stop. The active panel alone is visible. Pointer selection may scroll the tour into view on mobile; keyboard selection remains immediate. Reduced motion skips animated reveals.
 
-### Phone Tour
+### Hero Phone Composition
 
-Use the existing screenshots from `public/screens`, preserving full phone content and accurate alt text. Desktop shows one active phone with neighboring screens; mobile emphasizes one complete phone. Arrow, dot and swipe input all select a screen. Rotation runs every (10000ms) only on desktop when visible, in view, unpaused and not hovered/focused; reduced motion disables rotation. Manual selection announces the caption politely. Keyboard selection skips transition delays.
+The hero is a composition of three iPhone source captures: MOT history, a motorcycle/service plan and private service history in the foreground. Screens keep their original aspect ratios inside dark device rims, staggered over a large diagonal registration-yellow field. The larger foreground phone is upright so its small UI text lands on the pixel grid, with only the side phones rotated. Mid-width layouts use actual device dimensions rather than scaling the whole artwork layer. All phone images use original, lossless 1206 × 2622 PNG captures and open that capture in a new tab on activation. Desktop pairs this artwork with a left-aligned headline and download action; tablet/mobile place it beneath centered copy, with the central phone complete and side phones extending beyond the edges of the composition. The section clips the artwork without creating page overflow.
+
+Desktop remains static. On mobile (up to 600px), horizontal swipes cycle the three phones through the same central and angled side positions, with no automatic rotation. The selected phone stays upright and sharp. The showcase height follows the phone’s aspect ratio, with enough bottom clearance, and the phone width is capped to fit a short viewport. Vertical touch gestures scroll the page; swiping does not open an image. Arrow keys, Home and End move the selected phone with a roving tab stop and a quiet screen-reader announcement; Enter still opens its full-resolution capture. Reduced motion removes the position transitions. There are no hero captions, store-panel headings or visible carousel controls. Image alt text identifies the iPhone previews as illustrative; the asset manifest preserves the development/demo provenance. The feature tabs below the hero remain interactive and use their existing keyboard behavior.
 
 ### FAQ
 

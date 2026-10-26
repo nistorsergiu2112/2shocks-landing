@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
+import { extname } from "node:path";
 import { JSDOM } from "jsdom";
 
 // Check the actual exported HTML: these signals must work without JavaScript.
@@ -28,7 +29,12 @@ for (const url of urls) {
   for (const link of doc.querySelectorAll('a[href^="/"]')) {
     const destination = new URL(link.href, origin);
     const target = destination.pathname;
-    await access(target === "/" ? "out/index.html" : `out${target}.html`);
+    const targetFile = target === "/" ? "out/index.html" : extname(target) ? `out${target}` : `out${target}.html`;
+    await access(targetFile);
+    if (destination.hash && !extname(target)) {
+      const targetDoc = target === path ? doc : new JSDOM(await readFile(targetFile, "utf8")).window.document;
+      assert.ok(targetDoc.getElementById(decodeURIComponent(destination.hash.slice(1))), `Missing anchor: ${link.href}`);
+    }
   }
   console.log(`PASS ${url}`);
 }
@@ -41,4 +47,12 @@ const graph = JSON.parse(home.querySelector('script[type="application/ld+json"]'
 for (const type of ["Organization", "WebSite", "WebPage", "MobileApplication"]) assert.ok(graph.some(node => node["@type"] === type));
 assert.ok(home.querySelector('a[href="/guides/motorcycle-mot-history"]'));
 assert.ok(home.querySelector('a[href="/guides/motorcycle-service-history"]'));
-console.log("PASS robots, structured data, social assets and crawlable internal links");
+const playUrl = "https://play.google.com/store/apps/details?id=com.twoshocks.app";
+assert.ok(home.querySelectorAll(`a[href="${playUrl}"]`).length >= 6);
+assert.equal(home.querySelectorAll('a[href*="apps.apple.com"], a[href*="testflight"], form').length, 0);
+const app = graph.find(node => node["@type"] === "MobileApplication");
+assert.equal(app.downloadUrl, playUrl);
+assert.equal(app.operatingSystem, "Android");
+assert.ok(!app.aggregateRating && !app.review);
+assert.ok(!/coming soon to iOS and Android|not yet available to download/i.test(home.body.textContent));
+console.log("PASS robots, structured data, social assets, internal links/anchors and Android release actions");

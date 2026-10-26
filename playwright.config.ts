@@ -8,6 +8,7 @@ export default defineConfig({
   webServer: { command: "npm run dev -- --port 3001", url: baseURL, reuseExistingServer: true },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
+    { name: "android", use: { ...devices["Pixel 7"], browserName: "chromium" } },
     { name: "mobile", use: { ...devices["iPhone 13"], browserName: "chromium" } },
   ],
 });

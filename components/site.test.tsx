@@ -9,11 +9,10 @@ import { contact, features } from "@/data/site";
 afterEach(cleanup);
 
 describe("static site contracts", () => {
-  it("renders both stores as coming soon and not as links", () => {
-    const { container } = render(<StoreBadges />);
-    expect(screen.getByLabelText("App Store — coming soon")).toHaveAttribute("aria-disabled", "true");
-    expect(screen.getByLabelText("Google Play — coming soon")).toHaveAttribute("aria-disabled", "true");
-    expect(container.querySelectorAll("a")).toHaveLength(0);
+  it("links directly to Google Play and keeps iOS unavailable", () => {
+    render(<StoreBadges />);
+    expect(screen.getByLabelText("App Store — coming soon").closest("a")).toBeNull();
+    expect(screen.getByRole("link", { name: "Get it on Google Play" })).toHaveAttribute("href", "https://play.google.com/store/apps/details?id=com.twoshocks.app");
   });
 
   it("renders contact and legal links with non-interactive social placeholders", () => {
@@ -35,7 +34,7 @@ describe("static site contracts", () => {
   it("defines useful alternative text for every screenshot", () => {
     expect(features).toHaveLength(3);
     for (const feature of features) {
-      expect(feature.screen.src).toMatch(/^\/screens\/.+\.webp$/);
+      expect(feature.screen.src).toMatch(/^\/screens\/store-2026-10-22\/.+\.png$/);
       expect(feature.screen.alt.length).toBeGreaterThan(20);
     }
   });

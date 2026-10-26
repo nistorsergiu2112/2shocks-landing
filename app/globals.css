@@ -179,3 +179,13 @@ button:disabled { cursor: not-allowed; }
 
 /* Keep legal deep links clear of the fixed navigation. */
 .legal-content section[id] { scroll-margin-top: 110px; }
+
+/* Official artwork retains its intrinsic proportions and clear space. */
+.google-play-badge { display: inline-flex; padding: 14px; flex-shrink: 0; border-radius: 6px; }
+.google-play-badge img { display: block; width: 190px; height: auto; }
+.store-badges { align-items: center; gap: 14px; }
+.ios-coming-soon { font-size: 14px; color: #62626b; }
+.site-footer .ios-coming-soon { color: #c6c6ce; }
+.site-footer .store-badges { margin: 16px 0; }
+.site-footer .google-play-badge { padding-left: 0; }
+@media (max-width: 600px) { .store-badges { justify-content: center; } }

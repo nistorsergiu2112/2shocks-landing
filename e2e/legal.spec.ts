@@ -13,7 +13,7 @@ test("public rider policies, deletion and support are readable and accessible", 
     const response = await page.goto(path);
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
-    await expect(page.locator("main")).toContainText("20 October 2026");
+    await expect(page.locator("main")).toContainText(path === "/delete-account" ? "21 October 2026" : "26 October 2026");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://www.2shocks.com${path}`);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -22,7 +22,7 @@ test("public rider policies, deletion and support are readable and accessible", 
   }
 });
 
-test("deletion draft requires sending and is separate from staging automation", async ({ page }) => {
+test("deletion email requires sending and app requests expose status", async ({ page }) => {
   await page.goto("/delete-account");
   const draft = page.getByRole("link", { name: "Open an account-deletion email draft" });
   const href = new URL((await draft.getAttribute("href"))!);
@@ -30,7 +30,7 @@ test("deletion draft requires sending and is separate from staging automation", 
   expect(href.pathname).toBe("info@2shocks.com");
   expect(href.searchParams.get("subject")).toBe("2Shocks account deletion request");
   await expect(page.locator("main")).toContainText("Opening the link does not submit a request or delete anything");
-  await expect(page.locator("main")).toContainText("Production self-service submission and erasure have not been enabled and verified end to end");
+  await expect(page.locator("main")).toContainText("Profile → Privacy provides an account-deletion request flow");
   await expect(page.locator("main")).toContainText("does not delete your account or all private history");
   await page.getByRole("link", { name: "subscription information", exact: true }).click();
   await expect(page).toHaveURL(/\/app-terms#subscriptions$/);

@@ -1,0 +1,89 @@
+{
+  "sourceManifest": "/Users/sergiunistorcosmin/Desktop/2shocks assets/store-submission-2026-10-22/creative/manifest.json",
+  "provenance": "Approved 22 October store story. Synthetic rider/MOT records from a development client; MOT records labelled demo, not retrieved DVSA data. Android panels are iOS-derived with Android styling, not native Android captures. Free fixtures omit banners. First iPhone history capture has bike name above scroll position. No live customer activity is depicted. Sources copied unchanged; originals and historical website assets retained.",
+  "assets": [
+    {
+      "file": "/screens/store-2026-10-22/01-service-history.png",
+      "sha256": "6202e20fc1b08fdd4f3ba9239ddb588c0ea9acdf25520ae2eefdc6ca9a1c212e",
+      "source": "exports/android-phone/01-service-history.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/02-mot-history.png",
+      "sha256": "62de9492f5e9d3640eea75ed9d7b3810cc0d688f339588987e01005d8ff3b8d7",
+      "source": "exports/android-phone/02-mot-history.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/03-service-plan.png",
+      "sha256": "94e4e49e111a8de34165be8fbedc0b60f1e93c0b57df60c1f36f2b5404e2fa31",
+      "source": "exports/android-phone/03-service-plan.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/04-parts-oils.png",
+      "sha256": "f35974d0d7362a9f8e300463d083740a94f147c305e7a8e7be75e1c24128ea96",
+      "source": "exports/android-phone/04-parts-oils.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/05-garage-sheet.png",
+      "sha256": "3478c4acd1f788aadb18b1a3ef082d26e26475d30b088548ed1ebdcbaca99780",
+      "source": "exports/android-phone/05-garage-sheet.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/06-automatic-alerts.png",
+      "sha256": "e946a93f4544458cf978115a94c254420f26bd9bedb7c4dcff890c06ed8ebc4e",
+      "source": "exports/android-phone/06-automatic-alerts.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/07-plus-garage.png",
+      "sha256": "ebcf7315bd341ccc4d124aa39969c3e35c9ad9efdd94c1e93e978b70d35a6b77",
+      "source": "exports/android-phone/07-plus-garage.png",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "file": "/screens/store-2026-10-22/01-service-history-capture.png",
+      "sha256": "905b99dd540640b60fc438a43d6c85875a97debff5239f1fd55a1e04f7c5f88c",
+      "source": "captures/ios-iphone-17-pro/01-service-history.png",
+      "width": 1206,
+      "height": 2622
+    },
+    {
+      "file": "/screens/store-2026-10-22/02-mot-history-capture.png",
+      "sha256": "016ba72a4782aaac16315e0cd7032f28b570931cf317264c92ec2cba81fbcba6",
+      "source": "captures/ios-iphone-17-pro/02-mot-history.png",
+      "width": 1206,
+      "height": 2622
+    },
+    {
+      "file": "/screens/store-2026-10-22/07-plus-garage-capture.png",
+      "sha256": "fbc9e3f285f88b8b0f706bcf44c71b7b6da4bcc8d0c2a1af25376f3bcb854028",
+      "source": "captures/ios-iphone-17-pro/07-plus-garage.png",
+      "width": 1206,
+      "height": 2622
+    },
+    {
+      "file": "/screens/store-2026-10-22/03-service-plan-capture.png",
+      "source": "captures/ios-iphone-17-pro/03-service-plan.png",
+      "sha256": "6e88a76ee72447cd86fb97ec60cc4f26f2b26bad38eb5c47497bc82d92cd4ae1",
+      "width": 1206,
+      "height": 2622
+    }
+  ],
+  "googlePlayBadge": {
+    "source": "https://partnermarketinghub.withgoogle.com/brands/google-play/google-play/lockups-icons-badges/",
+    "archive": "Google Play Badge guidelines.zip",
+    "member": "GetItOnGooglePlay_Badge_Web_color_English.png",
+    "retrieved": "2026-10-26"
+  }
+}

@@ -30,7 +30,7 @@ export function PhoneShowcase() {
     </div>
     {features.map((feature, index) => <div key={feature.id} id={`panel-${feature.id}`} role="tabpanel" aria-labelledby={`tab-${feature.id}`} hidden={active !== index} tabIndex={0} className={s.featurePanel}>
       <div className={s.featureText}><p className={s.kicker}>{feature.eyebrow}</p><h3>{feature.title}</h3><p>{feature.description}</p><ul>{feature.points.map(point => <li key={point}>{point}</li>)}</ul>{feature.id === "plus" && <p className={s.tierNote}>Free includes one active motorcycle.<br />Up to 20 with 2Shocks Plus.</p>}</div>
-      <div className={s.featureScreen}><div className={s.device}><Image src={feature.screen.src} alt={feature.screen.alt} width={1170} height={2532} sizes="(max-width: 600px) 75vw, 340px" /></div></div>
+      <div className={s.featureScreen}><div><div className={s.device}><Image src={feature.screen.src} alt={feature.screen.alt} width={1206} height={2622} sizes="(max-width: 600px) 75vw, 340px" /></div><a className={s.screenLink} href={feature.screen.src}>View full-size preview</a></div></div>
     </div>)}
   </div>;
 }
