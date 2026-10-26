@@ -154,6 +154,33 @@ html { scroll-behavior: auto; }
 .guide-page .legal-hero .guide-byline { margin-bottom: 0; font-size: 14px; }
 .guide-page .legal-content { max-width: 740px; }
 .guide-page .legal-content p { font-size: 17px; }
+.guide-page .legal-content li { font-size: 17px; margin-block: 10px; }
+.guide-table-scroll { margin-block: 24px; max-width: 100%; overflow-x: auto; }
+.guide-table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 15px; line-height: 1.6; text-align: left; }
+.guide-table caption { text-align: left; font-weight: 600; margin-bottom: 16px; }
+.guide-table th, .guide-table td { padding: 14px 16px; border: 1px solid var(--line); vertical-align: top; min-width: 100px; }
+.guide-table th { font-weight: 600; background: var(--surface); }
+.guide-table td { color: #45454c; height: 64px; }
+.guide-page .guide-table-hint { display: none; }
+.guide-download .google-play-badge { margin-block: 12px; }
+@media (max-width: 700px) {
+  .guide-page .guide-table-hint { display: block; font-size: 14px; }
+  .guide-table caption { max-width: calc(100vw - 2 * var(--gutter)); }
+  .guide-table[data-columns="2"] { min-width: 0; table-layout: fixed; }
+  .guide-table[data-columns="2"] th:first-child { width: 35%; }
+}
+@media print {
+  .guide-page { padding: 0; background: white; }
+  body:has(.guide-page) .site-header, body:has(.guide-page) .site-footer,
+  .guide-page .google-play-badge, .guide-page .guide-table-hint { display: none; }
+  .guide-page .legal-hero { padding-bottom: 20px; }
+  .guide-page .legal-content { padding-top: 0; }
+  .guide-table-scroll { overflow: visible; }
+  .guide-table { min-width: 0; table-layout: fixed; font-size: 10pt; }
+  .guide-table th, .guide-table td { min-width: 0; padding: 8px; overflow-wrap: anywhere; }
+  .guide-table tr { break-inside: avoid; }
+  .guide-table thead { display: table-header-group; }
+}
 
 @media (max-width: 1250px) { .desktop-nav { display: none; } .mobile-nav { display: block; } }
 .mobile-nav nav { max-height: calc(100dvh - 100px); overflow-y: auto; }

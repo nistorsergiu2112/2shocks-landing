@@ -1,45 +1,58 @@
-# 2Shocks search visibility
+# 2Shocks search visibility — implementation handoff
 
-Audit and changes: 11 September 2026.
+Updated 26 October 2026. Replaces the September prelaunch handoff. Product scope follows [MARKETING-STRATEGY.md](MARKETING-STRATEGY.md); operating plan: [SEO-STRATEGY.md](SEO-STRATEGY.md).
 
-## Findings
+## Prepared locally
 
-- `https://2shocks.com/` returns a permanent 308 redirect to `https://www.2shocks.com/`, which returns HTTP 200.
-- The previous live canonical and Open Graph URL pointed back to the redirecting apex domain. Its robots.txt and sitemap also used that hostname. The source now consistently uses the existing production destination, `https://www.2shocks.com`.
-- Live robots.txt allowed crawling. The fetched home HTML had no noindex directive, and a nonexistent path returned HTTP 404. There was no confirmed blanket indexing block in these checks.
-- A public search returned no site pages. This is not an authoritative Google indexing diagnosis. Search Console's URL Inspection and Page indexing reports are needed to establish discovery, crawl status, selected canonical and any exclusion reason.
+- Homepage title, description and opening paragraph explicitly identify a motorbike maintenance app for UK riders. The approved service-book headline and established design remain.
+- Free/account/download FAQs appear first. The current one-bike Free and 20-bike Plus boundaries remain accurate. Google Play actions stay direct; iOS remains coming soon.
+- The homepage’s three guide links are visible in its mobile body as a compact list.
+- Existing MOT and service-history URLs are retained. They now include a record-type comparison, garage discussion questions, a reusable blank log and a completed-work/evidence/future-task example.
+- `/guides/motorcycle-service-plan` explains preparation rather than prepaid servicing, quotes or bookings, with an illustrative garage sheet. It is linked from home, the guide index and related guide sections.
+- Guide dates come from `updatedAt` in the guide data and feed both the visible byline and sitemap. Other changed-page dates are editorial constants, not build timestamps. The export has **11 canonical HTML pages**.
+- Google Play links carry allowlisted button-location labels. One document listener records `google_play_click` through the existing Vercel SDK with only canonical page and fixed location. Nested clicks and middle-clicks are handled once; right-clicks are ignored. No click handler changes navigation, appends a redirect or requires JavaScript to download.
+- Website opt-out is checked before the listener is mounted, again when clicked, and in Vercel’s dispatch hook. Page URL query strings and fragments are stripped. The website privacy notice now explains click measurement. No account, motorcycle, referrer or arbitrary URL value is added to custom event properties.
+- The foreground hero preview is eager/high-priority; side previews are lazy/low-priority. Lossless WebP display copies preserve decoded source pixels and dimensions, with PNG fallbacks and unchanged original PNG links. The three hero files are 69.3% smaller. See [performance evidence](docs/SEO-PERFORMANCE-2026-10-26.md) and `public/screens/web/manifest.json`.
+- [Search baseline](docs/SEO-BASELINE-2026-10-26.md), [prospect research](docs/SEO-PROSPECTS-2026-10-26.md), a 90-day operating sequence, change log and monthly report template are saved. No outreach has been sent.
 
-## Implemented
+No public API endpoint, rider-account model, app onboarding or website-to-app attribution was introduced. The guide data adds an editorial date and optional checklist/table/contextual-link fields; download badges accept a fixed location type.
 
-- Page-specific titles, descriptions, canonical URLs and social metadata on every public route.
-- Organization, WebSite, WebPage and prelaunch MobileApplication structured data, with stable linked identifiers and a crawlable brand logo. No invented ratings, downloads, social profiles or available purchase offers.
-- Brand and product category stated explicitly near the start of the home page.
-- A 1200 × 630 social preview image and PNG favicon fallback.
-- A rider-guide index and two original, internally linked guides covering MOT history and maintenance records. The MOT guide links directly to GOV.UK and provides an available official lookup destination while the app remains prelaunch.
-- Sitemap with all six canonical pages and editorial modification dates instead of a stale common date. All pages remain statically rendered and readable without running JavaScript.
-- Optional `GOOGLE_SITE_VERIFICATION` build environment variable for HTML-tag verification. Domain verification uses the DNS token Google supplies and does not need this variable. Never place a service-account key or private credential here.
-- `npm run test:seo` validates exported page metadata, indexing directives, internal destinations, structured data, image existence and sitemap/robots consistency. Run after `npm run build`.
+## Current evidence and dependencies
 
-## Google Search Console — owner setup
+Search Console is already verified; do not add another DNS verification token or change the domain. The original selected three-month Web report showed 14 impressions, zero clicks and average position 34 through 24 October. This is too little data to infer CTR problems. The sitemap report showed Success and ten URLs last read on 25 October.
 
-1. Add the **Domain** property `2shocks.com` at https://search.google.com/search-console. Add only the exact DNS TXT verification value Google provides at the DNS provider; preserve existing website and email records.
-2. After verification and deployment, submit `https://www.2shocks.com/sitemap.xml` under Sitemaps.
-3. Inspect `https://www.2shocks.com/`. Run **Test live URL**, confirm the page is accessible, then **Request indexing**. Repeat for the two guides if needed. Repeated requests do not make crawling faster.
-4. In URL Inspection, compare user-declared and Google-selected canonical. The intended canonical is the www URL. A redirect status on the apex URL is expected.
-5. Check Page indexing, Manual actions and Security issues for an actual reported problem. If Google says “Discovered – currently not indexed” or “Crawled – currently not indexed”, record that status; do not assume a robots block.
-6. Recheck after Google processes the site. Crawling can take days to weeks, and submitting a URL does not guarantee inclusion. Track impressions, clicks, queries and indexed canonical pages in Search Console.
+The older aggregate indexing report should not be treated as current for individual URLs: URL Inspection confirmed the service-history guide is indexed, fetchable by Googlebot smartphone and uses the intended canonical URL. Apex-to-www HTTP 308 is expected. Use individual inspection to validate any newly reported issue before trying to fix it.
 
-## Ongoing growth
+[Vercel custom events](https://vercel.com/docs/analytics/custom-events) require Pro or Enterprise. The code and local event tests are ready, but live provider plan eligibility, ingestion and dashboard reporting remain unverified. The old hosting handoff’s Hobby status is historical. No upgrade or paid tool was purchased. Until reporting works, record store clicks as unavailable rather than zero.
 
-- Link to the canonical website from real company and social profiles you control, when created. Use consistent brand spelling. Add only verified profile URLs to structured data.
-- Seek relevant editorial mentions from motorcycle communities and partners through useful contributions. Avoid purchased ranking links and bulk directory submissions.
-- Expand the guides from actual rider questions and original product knowledge. Keep prelaunch claims accurate. Add app-store links and availability only after release.
-- Use Search Console queries to refine pages people actually see. Review Core Web Vitals when sufficient field data is available; do not assume a Lighthouse score guarantees rankings.
+Product outcomes belong to the app’s separate, appropriately enabled measurement. This website cannot prove an install, signup, saved bike, garage reply or retained rider from a Play click. Do not divide all-source store clicks by organic-search visits and call that an organic conversion rate.
 
-## References
+## Validation
 
-- https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
-- https://developers.google.com/search/docs/appearance/site-names
-- https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl
-- https://developers.google.com/search/docs/fundamentals/seo-starter-guide
-- https://www.gov.uk/check-mot-history
+The production export, SEO assertions, TypeScript, lint and unit tests were checked. Browser checks cover desktop, Android-sized and iPhone-sized Chromium views, including accessible tables, 320px overflow, print layout, direct store navigation, privacy controls, carousel interaction and mobile guide links. **Final results:** production build, TypeScript, lint, all 11 exported-page SEO checks and **13 unit tests passed**. The final complete Playwright run against the served production export had **75 passing checks and 3 expected desktop skips** (mobile-only behaviours). No failing checks remain.
+
+SEO assertions check the actual exported HTML without requiring JavaScript: eleven unique canonical destinations matching the exported HTML routes; unique titles and descriptions; one H1; crawl directives; valid structured JSON; social-image existence; guide byline/sitemap date equality; labelled store links; and all internal links and fragments.
+
+Manual visual review checked the homepage/guide links and guide resources on desktop and mobile. The existing design scanner produced advisory token/documentation findings in the established stylesheets; this task does not replace the incumbent visual system or repair unrelated design-sidecar drift.
+
+Controlled mobile lab results and their limitations are in [SEO-PERFORMANCE-2026-10-26.md](docs/SEO-PERFORMANCE-2026-10-26.md). Search Console has no field Core Web Vitals data; there is no claim that INP or field performance passed.
+
+## Release and live checks
+
+Local implementation and validation are complete. On 26 October the founder requested committing and pushing the complete SEO change. Publication follows the existing Git-connected hosting process; live checks are recorded after the release is observed. The observation period begins after production updates. No DNS or email changes are needed for this SEO work.
+
+1. Build with `npm run build`, then run `npm run test:seo`. Optional asset regeneration is `node scripts/prepare-web-screens.mjs` before the build; committed display copies are ready to use.
+2. Review the preview homepage, guide index, all three guides and privacy notice. Check all download locations, mobile reading, source-image links and the browser statistics opt-out.
+3. After the approved release, confirm HTTP 200 for changed canonical pages, images, robots and sitemap; apex should still return 308 to www. Confirm an unknown URL returns 404. The live sitemap should now have 11 canonical HTML URLs and correct modification dates.
+4. In Search Console inspect the homepage and three guide URLs, compare declared/selected canonicals and test live retrieval. Request indexing once for materially changed pages where useful. Do not treat submitting a request as proof of inclusion or repeatedly submit unchanged pages.
+5. Check the existing submitted sitemap is processed successfully. No new property or DNS token is needed. Allow time for the new URL to be discovered.
+6. Where Vercel custom-event reporting is available, use a normal browser to click one labelled download action. Confirm one event with only the expected page/location. Turn statistics off, reload, and confirm no website analytics script or new event. Restore the browser’s intended preference afterwards. Do not infer an install from the event.
+7. Run a production mobile performance check, then review Search Console field experience when enough traffic exists. Keep deployment date, known measurement gaps and results in the strategy change log.
+8. Review technical failures weekly and compare complete 28-day search windows monthly. Use the report template and prospect queue; sending outreach, purchasing tools and future app attribution are separate activities.
+
+## Reference
+
+- [Google sitemap and lastmod guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+- [Google recrawl guidance](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl)
+- [Google AI-feature guidance](https://developers.google.com/search/docs/appearance/ai-features)
+- [Official MOT lookup](https://www.gov.uk/check-mot-history)

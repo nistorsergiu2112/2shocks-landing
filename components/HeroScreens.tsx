@@ -92,8 +92,12 @@ export function HeroScreens() {
         onFocus={() => { if (mobile) select(index); }}
         aria-current={mobile && index === active ? "true" : undefined}
         aria-label={`View ${label} at full resolution (opens in a new tab)`}>
-        <Image src={`/screens/store-2026-10-22/${screen}.png`} alt={alt} width={1206} height={2622}
-          unoptimized priority sizes="(max-width: 600px) 62vw, (max-width: 1200px) 30vw, 320px" draggable={false} />
+        <picture>
+          <source srcSet={`/screens/web/${screen}.webp`} type="image/webp" />
+          <Image src={`/screens/store-2026-10-22/${screen}.png`} alt={alt} width={1206} height={2622}
+            unoptimized loading={index === 0 ? "eager" : "lazy"} fetchPriority={index === 0 ? "high" : "low"}
+            sizes="(max-width: 600px) 62vw, (max-width: 1200px) 30vw, 320px" draggable={false} />
+        </picture>
       </a>;
     })}
     <span className={s.artworkStatus} aria-live="polite" aria-atomic="true">{mobile ? `${phones[active].label} preview, ${active + 1} of ${phones.length}` : ""}</span>

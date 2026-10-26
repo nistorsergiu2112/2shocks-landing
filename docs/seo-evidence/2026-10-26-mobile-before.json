@@ -1,0 +1,114 @@
+{
+  "target": "http://127.0.0.1:3002/",
+  "profile": "Pixel 7 / Chromium / cold cache / 1.6Mbps down / 150ms latency / 4x CPU slowdown",
+  "lcpMs": 7564,
+  "cls": 0.0030457959012473584,
+  "lcpElement": "IMG",
+  "resources": [
+    {
+      "path": "/screens/store-2026-10-22/01-service-history-capture.png",
+      "bytes": 255089,
+      "durationMs": 7316
+    },
+    {
+      "path": "/screens/store-2026-10-22/03-service-plan-capture.png",
+      "bytes": 924483,
+      "durationMs": 11019
+    },
+    {
+      "path": "/screens/store-2026-10-22/02-mot-history-capture.png",
+      "bytes": 248586,
+      "durationMs": 7179
+    },
+    {
+      "path": "/_next/static/chunks/1ouf6v4rh3y1e.css",
+      "bytes": 14056,
+      "durationMs": 580
+    },
+    {
+      "path": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+      "bytes": 5598,
+      "durationMs": 909
+    },
+    {
+      "path": "/_next/static/chunks/2fnu17uxrlr63.css",
+      "bytes": 30927,
+      "durationMs": 1028
+    },
+    {
+      "path": "/_next/static/chunks/2mmpezlrfmbu5.js",
+      "bytes": 34718,
+      "durationMs": 2078
+    },
+    {
+      "path": "/_next/static/chunks/3xwjyecfk6skk.js",
+      "bytes": 157954,
+      "durationMs": 7403
+    },
+    {
+      "path": "/_next/static/chunks/4561u0v7ysn3r.js",
+      "bytes": 228844,
+      "durationMs": 7455
+    },
+    {
+      "path": "/_next/static/chunks/turbopack-34c03k_92kqo6.js",
+      "bytes": 9652,
+      "durationMs": 4178
+    },
+    {
+      "path": "/_next/static/chunks/3fntmmi971322.js",
+      "bytes": 14377,
+      "durationMs": 4777
+    },
+    {
+      "path": "/_next/static/chunks/2_ryu38bzmes7.js",
+      "bytes": 35944,
+      "durationMs": 6052
+    },
+    {
+      "path": "/_next/static/chunks/0my38yecfv3g0.js",
+      "bytes": 11366,
+      "durationMs": 6562
+    },
+    {
+      "path": "/_next/static/media/inter-latin-wght-normal.0gsaq8ukbf34m.woff2",
+      "bytes": 48256,
+      "durationMs": 2135
+    },
+    {
+      "path": "/_next/static/media/space-grotesk-latin-wght-normal.092gko6h6levo.woff2",
+      "bytes": 22288,
+      "durationMs": 1822
+    },
+    {
+      "path": "/brand/google-play-badge.png",
+      "bytes": 10454,
+      "durationMs": 2486
+    },
+    {
+      "path": "/_vercel/insights/script.js",
+      "bytes": 0,
+      "durationMs": 163
+    },
+    {
+      "path": "/",
+      "bytes": 0,
+      "durationMs": 170
+    },
+    {
+      "path": "/__next._tree.txt",
+      "bytes": 315,
+      "durationMs": 165
+    },
+    {
+      "path": "/__next._index.txt",
+      "bytes": 7812,
+      "durationMs": 280
+    },
+    {
+      "path": "/__next.__PAGE__.txt",
+      "bytes": 38278,
+      "durationMs": 586
+    }
+  ]
+}

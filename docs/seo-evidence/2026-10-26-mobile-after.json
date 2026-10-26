@@ -1,0 +1,114 @@
+{
+  "target": "http://127.0.0.1:3002/",
+  "profile": "Pixel 7 / Chromium / cold cache / 1.6Mbps down / 150ms latency / 4x CPU slowdown",
+  "lcpMs": 1492,
+  "cls": 0.0035263448652384215,
+  "lcpElement": "P",
+  "resources": [
+    {
+      "path": "/_next/static/chunks/02_-64nlt714l.css",
+      "bytes": 15330,
+      "durationMs": 584
+    },
+    {
+      "path": "/_next/static/chunks/0kv_zu0r77afx.css",
+      "bytes": 31396,
+      "durationMs": 1056
+    },
+    {
+      "path": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+      "bytes": 5598,
+      "durationMs": 321
+    },
+    {
+      "path": "/_next/static/chunks/2mmpezlrfmbu5.js",
+      "bytes": 34718,
+      "durationMs": 1154
+    },
+    {
+      "path": "/_next/static/chunks/3xwjyecfk6skk.js",
+      "bytes": 157954,
+      "durationMs": 4401
+    },
+    {
+      "path": "/_next/static/chunks/4561u0v7ysn3r.js",
+      "bytes": 228844,
+      "durationMs": 4895
+    },
+    {
+      "path": "/_next/static/chunks/turbopack-34c03k_92kqo6.js",
+      "bytes": 9652,
+      "durationMs": 1497
+    },
+    {
+      "path": "/_next/static/chunks/3fntmmi971322.js",
+      "bytes": 14377,
+      "durationMs": 1722
+    },
+    {
+      "path": "/_next/static/chunks/31t5rpzed7xzn.js",
+      "bytes": 11727,
+      "durationMs": 2540
+    },
+    {
+      "path": "/_next/static/chunks/2ld6ef99t_l9i.js",
+      "bytes": 37841,
+      "durationMs": 2953
+    },
+    {
+      "path": "/screens/web/01-service-history-capture.webp",
+      "bytes": 57088,
+      "durationMs": 2004
+    },
+    {
+      "path": "/_next/static/media/inter-latin-wght-normal.0gsaq8ukbf34m.woff2",
+      "bytes": 48256,
+      "durationMs": 1853
+    },
+    {
+      "path": "/_next/static/media/space-grotesk-latin-wght-normal.092gko6h6levo.woff2",
+      "bytes": 22288,
+      "durationMs": 1417
+    },
+    {
+      "path": "/brand/google-play-badge.png",
+      "bytes": 10454,
+      "durationMs": 1756
+    },
+    {
+      "path": "/screens/web/02-mot-history-capture.webp",
+      "bytes": 55644,
+      "durationMs": 2992
+    },
+    {
+      "path": "/screens/web/03-service-plan-capture.webp",
+      "bytes": 326404,
+      "durationMs": 4890
+    },
+    {
+      "path": "/_vercel/insights/script.js",
+      "bytes": 0,
+      "durationMs": 166
+    },
+    {
+      "path": "/",
+      "bytes": 0,
+      "durationMs": 174
+    },
+    {
+      "path": "/__next._tree.txt",
+      "bytes": 315,
+      "durationMs": 162
+    },
+    {
+      "path": "/__next._index.txt",
+      "bytes": 7843,
+      "durationMs": 279
+    },
+    {
+      "path": "/__next.__PAGE__.txt",
+      "bytes": 39356,
+      "durationMs": 594
+    }
+  ]
+}

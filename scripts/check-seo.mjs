@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, access } from "node:fs/promises";
+import { readFile, access, readdir } from "node:fs/promises";
 import { extname } from "node:path";
 import { JSDOM } from "jsdom";
 
@@ -7,7 +7,10 @@ import { JSDOM } from "jsdom";
 const origin = "https://www.2shocks.com";
 const sitemap = new JSDOM(await readFile("out/sitemap.xml", "utf8"), { contentType: "text/xml" });
 const urls = [...sitemap.window.document.querySelectorAll("loc")].map(node => node.textContent);
-assert.equal(urls.length, 10);
+assert.equal(urls.length, 11);
+assert.equal(new Set(urls).size, urls.length, "Duplicate sitemap URLs");
+const exportedPages = (await readdir("out", { recursive: true })).filter(path => path.endsWith(".html") && !["404.html", "404/index.html", "_not-found.html"].includes(path));
+assert.deepEqual(new Set(urls.map(url => new URL(url).pathname)), new Set(exportedPages.map(path => path === "index.html" ? "/" : `/${path.slice(0, -5)}`)), "Exported routes and sitemap must agree");
 const titles = new Set();
 for (const url of urls) {
   assert.equal(new URL(url).origin, origin, `Wrong canonical host: ${url}`);
@@ -26,6 +29,17 @@ for (const url of urls) {
   assert.equal(new URL(image).origin, origin);
   await access(`out${new URL(image).pathname}`);
   for (const script of doc.querySelectorAll('script[type="application/ld+json"]')) JSON.parse(script.textContent);
+  if (path.startsWith("/guides/")) {
+    const date = doc.querySelector(".guide-byline time");
+    const entry = [...sitemap.window.document.querySelectorAll("url")].find(node => node.querySelector("loc").textContent === url);
+    assert.equal(date.dateTime, entry.querySelector("lastmod").textContent, `Guide/sitemap dates disagree: ${url}`);
+    assert.ok(doc.querySelector('a[data-store-location="guide"]'), `Missing guide download: ${url}`);
+    for (const table of doc.querySelectorAll("table")) {
+      assert.ok(table.querySelector("caption"));
+      assert.ok(table.querySelectorAll('th[scope="col"]').length >= 2);
+    }
+  }
+  for (const link of doc.querySelectorAll('a[href="https://play.google.com/store/apps/details?id=com.twoshocks.app"]')) assert.ok(link.dataset.storeLocation, `Unmeasured store link on ${url}`);
   for (const link of doc.querySelectorAll('a[href^="/"]')) {
     const destination = new URL(link.href, origin);
     const target = destination.pathname;
@@ -47,6 +61,9 @@ const graph = JSON.parse(home.querySelector('script[type="application/ld+json"]'
 for (const type of ["Organization", "WebSite", "WebPage", "MobileApplication"]) assert.ok(graph.some(node => node["@type"] === type));
 assert.ok(home.querySelector('a[href="/guides/motorcycle-mot-history"]'));
 assert.ok(home.querySelector('a[href="/guides/motorcycle-service-history"]'));
+assert.ok(home.querySelector('a[href="/guides/motorcycle-service-plan"]'));
+assert.equal(home.title, "Motorbike Maintenance App UK & Service Log | 2Shocks");
+assert.ok(home.querySelector("main").textContent.includes("2Shocks is a motorbike maintenance app for UK riders."));
 const playUrl = "https://play.google.com/store/apps/details?id=com.twoshocks.app";
 assert.ok(home.querySelectorAll(`a[href="${playUrl}"]`).length >= 6);
 assert.equal(home.querySelectorAll('a[href*="apps.apple.com"], a[href*="testflight"], form').length, 0);

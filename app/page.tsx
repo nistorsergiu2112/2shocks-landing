@@ -10,19 +10,20 @@ import { StoreBadges, GooglePlayBadge } from "@/components/StoreBadges";
 import { contact, googlePlayUrl, riderPlans } from "@/data/site";
 import s from "./home.module.css";
 
-export const metadata = pageMetadata("2Shocks: Motorbike Maintenance, MOT & Service History", "Your motorbike’s service book, on your phone. Service history, available MOT records, mileage and plans for UK riders. Get it on Google Play. iOS coming soon.", "/", true);
+export const metadata = pageMetadata("Motorbike Maintenance App UK & Service Log | 2Shocks", "Keep service history, available MOT records, mileage and plans in one motorbike maintenance app for UK riders. Start free on Android. iOS coming soon.", "/", true);
 
 const questions = [
-  ["Will the app show ads?", "Advertising is enabled in the current production build configuration, subject to eligibility and provider availability. Eligible adult Free riders may see Google AdMob banners on Home, Garage, Parts and Service. Plus, under-18 and unknown-age riders receive no ads. Refusing consent keeps app access but may still permit limited ads under Google UMP privacy signals. Advertising choices and separate optional measurement controls are in Profile → Privacy."],
+  ["Is 2Shocks free?", "Yes. Start free with one active motorcycle, service history, available MOT records, mileage, service plans, garage sheets and automatic bike alerts. Remove your active bike and add another without upgrading. Plus adds up to 20 active motorcycles, custom reminders and an ad-free experience."],
   ["Do I need an account?", "Yes. An account and internet connection are required. Free saves one active motorcycle at a time. You can remove it and save another number plate without upgrading. It includes number-plate lookup, motorcycle details, MOT history, parts matching, service plans, service-history entries, garage sheets, automatic bike alerts and email enquiry preparation. Plus adds up to 20 active motorcycles, custom reminders and an ad-free experience."],
+  ["When can I download it?", "Android is publicly available on Google Play. Use any Google Play link on this page, including from an iPhone browser, to view the Android listing. iOS is coming soon; public App Store availability has not been verified. Vehicle lookup is designed for UK motorcycle registrations; data coverage varies by motorcycle."],
   ["Who is 2Shocks for?", "UK motorcycle owners who want to keep track of their bike and prepare for maintenance. Whether you’ve just bought a used bike or have owned yours for years, start with its registration and confirm the details we find. Coverage and available information vary by motorcycle."],
+  ["Will the app show ads?", "Advertising is enabled in the current production build configuration, subject to eligibility and provider availability. Eligible adult Free riders may see Google AdMob banners on Home, Garage, Parts and Service. Plus, under-18 and unknown-age riders receive no ads. Refusing consent keeps app access but may still permit limited ads under Google UMP privacy signals. Advertising choices and separate optional measurement controls are in Profile → Privacy."],
   ["What is a motorcycle passport?", "Your bike record in 2Shocks: its identity, available MOT history, the maintenance you record and your saved service plans. Official records and information you add are labelled separately. It isn’t proof of ownership or an independently verified full service history."],
   ["Can I book a garage through the app?", "Garage booking isn’t part of the first release. Free lets you prepare and save a garage sheet with requested work, notes and suggested parts. Choose a garage through Google Maps, open its listing to find its email address, then review and send the prepared enquiry in your own email app. The garage confirms availability, work, parts and price directly. Nothing is sent automatically, and replies are handled in your email app. A sheet or enquiry is not a confirmed booking."],
   ["Do I need to know which parts to choose?", "No. You can prepare a service plan without a parts shortlist. If you explore the suggested parts, treat them as a starting point: exact fitment needs confirmation before ordering or installation. Parts purchasing isn’t included in the first release."],
   ["How does parts matching work?", "2Shocks uses your resolved motorcycle details to find suggestions across parts catalogues, so you don’t have to start every search from scratch. Browse available categories, save a shortlist and include it in a service plan. Suggestions are guidance, not guaranteed fitment; confirm the exact part before ordering or installation. Basic parts matching is included in Free."],
   ["What happens if I change my bike?", "Free lets you keep one active motorcycle at a time. Remove it before saving another bike; there is no lifetime replacement limit. Removing a bike detaches it from your account and cancels its reminders. Your private service entries are not passed to another rider or recovered automatically by entering the same plate or VIN. Export records you need before removal. Plus lets you keep up to 20 active motorcycles together."],
   ["How do I manage privacy or delete my account?", "Use Profile → Privacy for privacy controls and private-data export. You can request account deletion through the app or use the account-deletion page linked below. A request is not completed erasure; some records require individual review. Contact info@2shocks.com for help."],
-  ["When can I download it?", "Android is publicly available on Google Play. Use any Google Play link on this page, including from an iPhone browser, to view the Android listing. iOS is coming soon; public App Store availability has not been verified. Vehicle lookup is designed for UK motorcycle registrations; data coverage varies by motorcycle."],
 ];
 
 export default function Home() {
@@ -33,8 +34,8 @@ export default function Home() {
       <div className={s.heroCopy}>
       <p className={s.launch}><strong><i aria-hidden="true" />Android is live</strong><span>Built for UK riders</span></p>
       <h1>Your motorbike’s <br />service book, <br /><span>on your phone.</span></h1>
-      <p className={s.lede}>Keep your motorcycle’s service history, available MOT records, mileage and maintenance plans together. Start free with one active motorcycle.</p>
-      <div className={s.heroActions}><GooglePlayBadge /><a className={s.secondaryLink} href="#features">Explore the app <span aria-hidden="true">↓</span></a></div>
+      <p className={s.lede}>2Shocks is a motorbike maintenance app for UK riders. Keep your motorcycle’s service history, available MOT records, mileage and maintenance plans together. Start free with one active motorcycle.</p>
+      <div className={s.heroActions}><GooglePlayBadge location="hero" /><a className={s.secondaryLink} href="#features">Explore the app <span aria-hidden="true">↓</span></a></div>
       <p className={s.heroNote}><strong>Free for one active motorcycle</strong><span>iOS coming soon · <a href="#plans">Compare Free & Plus</a></span></p>
       </div>
       <HeroScreens />
@@ -47,14 +48,14 @@ export default function Home() {
       <p className={s.mobileIntro}>Enter your UK registration, confirm your motorcycle, then keep its available MOT records, service history and maintenance plans together.</p>
       <div className={`${s.steps} ${s.desktopDetail}`}>
         <article><div className={s.stepVisual}><span className={s.plate}>AB12 XYZ</span></div><span className={s.stepNumber}>01</span><h3>Enter your registration.</h3><p>Start with your UK number plate, then confirm the model, variant and year where needed. Save one active motorcycle free, and replace it when your bike changes.</p></article>
-        <article><div className={s.stepVisual}><div className={s.identity}><small>YOUR MOTORCYCLE RECORD</small><strong>Honda CBR1000RR</strong><span>MOT history · Maintenance · Plans</span></div></div><span className={s.stepNumber}>02</span><h3>Keep its history together.</h3><p>Review available MOT records and add the work you’ve had done, with your notes, dates and mileage.</p></article>
+        <article><div className={s.stepVisual}><div className={s.identity}><small>YOUR MOTORCYCLE RECORD</small><strong>Honda CBR1000RR</strong><span>MOT history · Maintenance · Plans</span></div></div><span className={s.stepNumber}>02</span><h3>Keep its service history.</h3><p>Review available MOT records and add the work you’ve had done, with your notes, dates and mileage.</p></article>
         <article><div className={s.stepVisual}><div className={s.passportSymbol}><BoltMark compact={false} /><span>YOUR NEXT SERVICE<br /><strong>Go in prepared</strong></span></div></div><span className={s.stepNumber}>03</span><h3>Prepare for the next service.</h3><p>Save the work you’re considering. Keep a plan on your phone, ready for your next conversation with a garage.</p></article>
       </div>
     </section>
 
     <section id="features" className={`${s.section} ${s.explore}`}>
       <div className={s.sectionTop}><p className={s.kicker}>Inside the rider app</p></div>
-      <h2>Your bike record.<br /><span>Easy to pick up again.</span></h2>
+      <h2>Your bike’s service history.<br /><span>And what comes next.</span></h2>
       <div className={s.mobileFeatures} aria-label="Rider app features">
         <details><summary>Your bike’s history</summary><p>Start with a UK registration and confirm the model, variant and year where needed. Review available MOT results, advisories and recorded mileage. Keep your own servicing, repair notes and mileage records private to your account.</p></details>
         <details><summary>Parts & maintenance plans</summary><p>Save your planned work, useful parts and oil guidance. Coverage varies by motorcycle; confirm suitability before buying or use. Available retail parts estimates exclude labour and other charges.</p></details>
@@ -64,7 +65,7 @@ export default function Home() {
       <PhoneShowcase />
       <p className={s.demoNote}>Illustrative iOS development captures with demo records · iOS coming soon · Free previews omit ads</p>
       <div className={s.facts}>
-        <article><span>MOT RECORDS</span><h3>Check the date.<br />Revisit the advisories.</h3><p>See MOT status, expiry and history, with the latest recorded MOT mileage where available.</p></article>
+        <article><span>MOT RECORDS</span><h3>Your MOT history.<br />Tests and advisories.</h3><p>See MOT status, expiry and history, with the latest recorded MOT mileage where available.</p></article>
         <article><span>MILEAGE</span><h3>A reading.<br />With its source.</h3><p>Keep rider-entered mileage separate from historical MOT readings. Comparisons are guidance, not mileage verification. Tax data is not currently provided.</p></article>
         <article><span>CLEAR SOURCES</span><h3>Your notes.<br />Official records.</h3><p>Know which information comes from official records and which you’ve added yourself. Gaps in the record stay clear.</p></article>
       </div>
@@ -99,7 +100,7 @@ export default function Home() {
       <div className={s.darkInner}>
         <div className={s.sectionTop}><p className={s.kicker}>Service plans & garage sheets · Included in Free</p></div>
         <div className={s.partsLayout}>
-          <div><h2>Your next service.<br /><span>Easier to explain.</span></h2><p className={s.description}>Create, edit, complete or cancel service plans with Free. Prepare and save a garage sheet with requested work, notes and suggested parts, ready to discuss with a garage.</p><ul className={s.checkList}><li>Prepare and save your garage sheet</li><li>Choose a garage through Google Maps and open its listing to find its email address</li><li>Review and send the prepared enquiry in your own email app</li></ul><p className={s.caution}>The garage confirms availability, work, parts and price directly. Nothing is sent automatically; replies go to your email app. Sheets and enquiries are not confirmed bookings, and parts suggestions do not guarantee fitment.</p></div>
+          <div><h2>Motorcycle service plans.<br /><span>Ready for the garage.</span></h2><p className={s.description}>Create, edit, complete or cancel service plans with Free. Prepare and save a garage sheet with requested work, notes and suggested parts, ready to discuss with a garage.</p><ul className={s.checkList}><li>Prepare and save your garage sheet</li><li>Choose a garage through Google Maps and open its listing to find its email address</li><li>Review and send the prepared enquiry in your own email app</li></ul><p className={s.caution}>The garage confirms availability, work, parts and price directly. Nothing is sent automatically; replies go to your email app. Sheets and enquiries are not confirmed bookings, and parts suggestions do not guarantee fitment.</p></div>
           <div className={s.plan} aria-label="Illustrative service plan example">
             <div className={s.planHeader}><BoltMark /><span>SERVICE PLAN / EXAMPLE</span><span>HONDA</span></div>
             <h3>Oil service.<br />A few things to discuss.</h3>
@@ -118,15 +119,15 @@ export default function Home() {
       <h2>A useful record.<br /><span>Free for one motorcycle.</span></h2>
       <p className={s.description}>Sign in to start free. Automatic bike alerts are included. Eligible adult Free riders may see banners, subject to Google UMP privacy choices and provider availability; consent refusal may still permit limited ads. <Link href="/app-privacy">Read about your choices.</Link></p>
       <div className={s.planOptions}>
-        <article className={s.freePlan}><p className={s.kicker}>2Shocks Free</p><h3>One bike. Your maintenance tools.</h3><p className={s.price}>£0 <span>/ one active motorcycle</span></p><ul className={s.mobilePlanBenefits}><li>One active motorcycle; remove it and add another</li><li>Service history, mileage and maintenance plans</li><li>Garage sheets and email enquiries</li><li>Automatic bike alerts, subject to settings and availability</li></ul><ul className={s.desktopDetail}><li>One active motorcycle, with free bike replacement</li><li>Confirm or correct your model and variant</li><li>Number-plate lookup, motorcycle details and MOT history</li><li>Parts matching, oil suggestions and retail parts estimates</li><li>Create, edit, complete and cancel service plans</li><li>Private servicing, repair history and mileage records</li><li>Save useful parts for later</li><li>Automatic MOT reminders, mileage check-ins and saved-parts updates, subject to settings and availability</li><li>Prepare and save garage sheets with requested work, notes and suggested parts</li><li>Find garages through Google Maps and prepare an email enquiry to review and send</li></ul><a className={s.inlineLink} href={googlePlayUrl}>Get it on Google Play <span aria-hidden="true">↗</span></a></article>
-        <article className={s.plusPlan}><p className={s.kicker}>2Shocks Plus</p><h3>Your bikes. All together.</h3><p className={s.price}>£{riderPlans.plusMonthlyGbp.toFixed(2)} <span>/ month</span></p><ul><li>All Free features</li><li>Up to 20 active motorcycles</li><li>Custom reminders</li><li>An ad-free experience</li></ul><a className={s.inlineLink} href={googlePlayUrl}>Get it on Google Play <span aria-hidden="true">↗</span></a><p className={s.planNote}>£3.99/month is the UK reference price. The store shows the applicable price and renewal terms before you subscribe. <Link href="/app-terms#subscriptions">Read subscription information</Link>.</p></article>
+        <article className={s.freePlan}><p className={s.kicker}>2Shocks Free</p><h3>One bike. Your maintenance tools.</h3><p className={s.price}>£0 <span>/ one active motorcycle</span></p><ul className={s.mobilePlanBenefits}><li>One active motorcycle; remove it and add another</li><li>Service history, mileage and maintenance plans</li><li>Garage sheets and email enquiries</li><li>Automatic bike alerts, subject to settings and availability</li></ul><ul className={s.desktopDetail}><li>One active motorcycle, with free bike replacement</li><li>Confirm or correct your model and variant</li><li>Number-plate lookup, motorcycle details and MOT history</li><li>Parts matching, oil suggestions and retail parts estimates</li><li>Create, edit, complete and cancel service plans</li><li>Private servicing, repair history and mileage records</li><li>Save useful parts for later</li><li>Automatic MOT reminders, mileage check-ins and saved-parts updates, subject to settings and availability</li><li>Prepare and save garage sheets with requested work, notes and suggested parts</li><li>Find garages through Google Maps and prepare an email enquiry to review and send</li></ul><a className={s.inlineLink} href={googlePlayUrl} data-store-location="free-plan">Get it on Google Play <span aria-hidden="true">↗</span></a></article>
+        <article className={s.plusPlan}><p className={s.kicker}>2Shocks Plus</p><h3>Your bikes. All together.</h3><p className={s.price}>£{riderPlans.plusMonthlyGbp.toFixed(2)} <span>/ month</span></p><ul><li>All Free features</li><li>Up to 20 active motorcycles</li><li>Custom reminders</li><li>An ad-free experience</li></ul><a className={s.inlineLink} href={googlePlayUrl} data-store-location="plus-plan">Get it on Google Play <span aria-hidden="true">↗</span></a><p className={s.planNote}>£3.99/month is the UK reference price. The store shows the applicable price and renewal terms before you subscribe. <Link href="/app-terms#subscriptions">Read subscription information</Link>.</p></article>
       </div>
     </section>
 
-    <section className={`${s.section} ${s.intro} ${s.desktopDetail}`} id="rider-guides">
+    <section className={`${s.section} ${s.intro}`} id="rider-guides">
       <p className={s.kicker}>Motorcycle ownership guides</p>
       <h2>Know your history.<br /><span>Plan what comes next.</span></h2>
-      <div className={s.facts}>
+      <div className={`${s.facts} ${s.guideLinks}`}>
         {guides.map(guide => <article key={guide.slug}><h3><Link href={`/guides/${guide.slug}`}>{guide.title}</Link></h3><p>{guide.description}</p><Link className={s.inlineLink} href={`/guides/${guide.slug}`}>Read the guide <span aria-hidden="true">↗</span></Link></article>)}
       </div>
     </section>
@@ -138,7 +139,7 @@ export default function Home() {
 
     <section className={s.closing} id="launch">
       <div className={s.closingSymbol}><BoltMark compact={false} /></div><p className={s.kicker}>Available on Google Play</p><h2>Your bike.<br />A fresh start.</h2><p>Start your motorbike’s service book today.<br />Built for UK motorcycle ownership and registration lookup.</p>
-      <StoreBadges />
+      <StoreBadges location="closing" />
       <p className={s.launchHelp}>An account and internet connection are required. Coverage varies by motorcycle.</p>
       <p className={s.launchFallback}>Or email <a href={`mailto:${contact.email}`}>{contact.email}</a>. <a href="/privacy">Privacy policy</a></p>
     </section>

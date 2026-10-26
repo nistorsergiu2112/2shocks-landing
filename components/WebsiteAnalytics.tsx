@@ -1,7 +1,10 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
+import { track } from "@vercel/analytics";
+import { googlePlayUrl, siteUrl } from "@/data/site";
+import { storeLocations } from "@/data/store-locations";
 
 const preferenceKey = "2shocks:website-statistics-disabled";
 const preferenceEvent = "2shocks:website-statistics-change";
@@ -36,10 +39,44 @@ function subscribe(callback: () => void) {
 }
 
 const serverSnapshot = (): boolean | null => null;
-const beforeSend = (event: BeforeSendEvent) => statisticsDisabled() ? null : event;
+const allowedStoreLocations = new Set<string>(storeLocations);
+
+function beforeSend(event: BeforeSendEvent) {
+  if (statisticsDisabled()) return null;
+  // Search parameters and fragments can contain information a visitor supplied.
+  const url = new URL(event.url);
+  url.search = "";
+  url.hash = "";
+  return { ...event, url: url.href };
+}
 
 export function WebsiteAnalytics() {
   const disabled = useSyncExternalStore(subscribe, statisticsDisabled, serverSnapshot);
+  useEffect(() => {
+    if (disabled !== false) return;
+    function onStoreClick(event: MouseEvent) {
+      if (statisticsDisabled() || (event.type === "click" ? event.button !== 0 : event.button !== 1)) return;
+      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[data-store-location]") : null;
+      const location = link?.dataset.storeLocation;
+      if (!link || link.href !== googlePlayUrl || !location || !allowedStoreLocations.has(location)) return;
+      // Use the page's fixed canonical path, never the visitor's URL or referrer.
+      const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (!canonical) return;
+      const url = new URL(canonical.href);
+      if (url.origin !== siteUrl) return;
+      try {
+        track("google_play_click", { page: url.pathname, location });
+      } catch {
+        // Download links must still work if analytics is blocked or unavailable.
+      }
+    }
+    document.addEventListener("click", onStoreClick);
+    document.addEventListener("auxclick", onStoreClick);
+    return () => {
+      document.removeEventListener("click", onStoreClick);
+      document.removeEventListener("auxclick", onStoreClick);
+    };
+  }, [disabled]);
   // Read the browser preference before mounting the existing analytics script.
   return disabled === false ? <Analytics beforeSend={beforeSend} /> : null;
 }

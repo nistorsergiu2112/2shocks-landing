@@ -165,7 +165,6 @@ test("mobile features stay compact and the complete hero phone stays in view", a
 
 test("rider guides are linked, readable and accessible", async ({ page }) => {
   await page.goto("/");
-  if (page.viewportSize()!.width <= 600) await page.locator('footer').getByRole('link', { name: 'Rider guides' }).click();
   await page.getByRole("link", { name: "How to check a motorcycle’s MOT history", exact: true }).click();
   await expect(page).toHaveURL(/\/guides\/motorcycle-mot-history$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("How to check a motorcycle’s MOT history");
@@ -330,9 +329,9 @@ test("mobile hides repeated long sections while retaining the core offer and hel
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto('/');
   const mobileHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  for (const id of ['parts-estimates', 'parts-matching', 'rider-guides']) await expect(page.locator(`#${id}`)).toBeHidden();
+  for (const id of ['parts-estimates', 'parts-matching']) await expect(page.locator(`#${id}`)).toBeHidden();
   await expect(page.getByRole('tablist')).toHaveCount(0);
-  for (const id of ['how-it-works', 'features', 'plans', 'questions', 'launch']) await expect(page.locator(`#${id}`)).toBeVisible();
+  for (const id of ['how-it-works', 'features', 'plans', 'rider-guides', 'questions', 'launch']) await expect(page.locator(`#${id}`)).toBeVisible();
   await expect(page.locator('#plans')).toContainText('Up to 20 active motorcycles');
   for (const path of ['/app-privacy', '/app-terms', '/delete-account', '/support', '/guides']) await expect(page.locator(`footer a[href="${path}"]`)).toBeVisible();
   expect(mobileHeight).toBeLessThan(7500);

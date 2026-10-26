@@ -1,0 +1,42 @@
+{
+  "format": "lossless WebP",
+  "originalProvenance": "docs/RELEASE-ASSETS-2026-10-26.json",
+  "assets": [
+    {
+      "source": "/screens/store-2026-10-22/01-service-history-capture.png",
+      "display": "/screens/web/01-service-history-capture.webp",
+      "sourceSha256": "905b99dd540640b60fc438a43d6c85875a97debff5239f1fd55a1e04f7c5f88c",
+      "displaySha256": "8adc962ee4edd34a3396a027ace4827db2da3453f01711d5002daafd00568b7c",
+      "sourceBytes": 255089,
+      "displayBytes": 57088,
+      "decodedPixelsEqual": true
+    },
+    {
+      "source": "/screens/store-2026-10-22/02-mot-history-capture.png",
+      "display": "/screens/web/02-mot-history-capture.webp",
+      "sourceSha256": "016ba72a4782aaac16315e0cd7032f28b570931cf317264c92ec2cba81fbcba6",
+      "displaySha256": "af13ca124e0fad83da9eca8a4aec46e7b195943842bba22201ff081235004bfc",
+      "sourceBytes": 248586,
+      "displayBytes": 55644,
+      "decodedPixelsEqual": true
+    },
+    {
+      "source": "/screens/store-2026-10-22/03-service-plan-capture.png",
+      "display": "/screens/web/03-service-plan-capture.webp",
+      "sourceSha256": "6e88a76ee72447cd86fb97ec60cc4f26f2b26bad38eb5c47497bc82d92cd4ae1",
+      "displaySha256": "c1339238d06d36b4b2a272f76bd355548f018ca0626996348dcfbac29f05589f",
+      "sourceBytes": 924483,
+      "displayBytes": 326404,
+      "decodedPixelsEqual": true
+    },
+    {
+      "source": "/screens/store-2026-10-22/07-plus-garage-capture.png",
+      "display": "/screens/web/07-plus-garage-capture.webp",
+      "sourceSha256": "fbc9e3f285f88b8b0f706bcf44c71b7b6da4bcc8d0c2a1af25376f3bcb854028",
+      "displaySha256": "f61ac4d0dc017dbc5bff35250b0a7dc6c92397436af7b4c758a14bb05e989adf",
+      "sourceBytes": 270716,
+      "displayBytes": 68310,
+      "decodedPixelsEqual": true
+    }
+  ]
+}

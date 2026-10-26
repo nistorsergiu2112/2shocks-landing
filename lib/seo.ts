@@ -18,7 +18,7 @@ export const homeSchema = {
   "@graph": [
     { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "2Shocks", legalName: legalEntity.name, url: `${siteUrl}/`, logo: `${siteUrl}/brand/2shocks-symbol-512.png`, email: contact.email },
     { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "2Shocks", alternateName: ["2shocks.com", "2 Shocks"], url: `${siteUrl}/`, inLanguage: "en-GB", publisher: { "@id": `${siteUrl}/#organization` } },
-    { "@type": "WebPage", "@id": `${siteUrl}/#webpage`, url: `${siteUrl}/`, name: "2Shocks: Motorbike Maintenance, MOT & Service History", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": `${siteUrl}/#app` }, inLanguage: "en-GB" },
+    { "@type": "WebPage", "@id": `${siteUrl}/#webpage`, url: `${siteUrl}/`, name: "Motorbike Maintenance App UK & Service Log | 2Shocks", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": `${siteUrl}/#app` }, inLanguage: "en-GB" },
     { "@type": "MobileApplication", "@id": `${siteUrl}/#app`, name: "2Shocks", operatingSystem: "Android", downloadUrl: googlePlayUrl, installUrl: googlePlayUrl, applicationCategory: "UtilitiesApplication", url: `${siteUrl}/`, description: "Your motorbike’s service book, on your phone. Available on Google Play for UK motorcycle ownership: private service history, available MOT records, mileage and maintenance plans. iOS coming soon.", publisher: { "@id": `${siteUrl}/#organization` } },
   ],
 };

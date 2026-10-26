@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "app/home.module.css"
+        ],
+        "createdAt": "2026-10-26T10:41:17.225Z",
+        "reason": "Agent review: the existing three-phone mobile hero carousel intentionally changes phone size and position over 280ms as documented in DESIGN.md. This declaration is unchanged from HEAD, reduced motion disables transitions, and the SEO work preserves this established interaction."
+      }
+    ]
+  }
+}
