@@ -15,11 +15,12 @@ describe("static site contracts", () => {
     expect(screen.getByRole("link", { name: "Get it on Google Play" })).toHaveAttribute("href", "https://play.google.com/store/apps/details?id=com.twoshocks.app");
   });
 
-  it("renders contact, legal and live Facebook links", () => {
+  it("renders contact, legal and live social links", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: contact.email })).toHaveAttribute("href", `mailto:${contact.email}`);
     expect(screen.getByRole("link", { name: "Website terms" })).toHaveAttribute("href", "/terms");
     expect(screen.getByRole("link", { name: "Website privacy" })).toHaveAttribute("href", "/privacy");
+    expect(screen.getByRole("link", { name: "2Shocks on Instagram (opens in a new tab)" })).toHaveAttribute("href", "https://www.instagram.com/2shocksapp/");
     expect(screen.getByRole("img", { name: "X — coming soon" }).closest("a, button")).toBeNull();
     expect(screen.getByRole("link", { name: "2Shocks on Facebook (opens in a new tab)" })).toHaveAttribute("href", "https://www.facebook.com/profile.php?id=61596372124536");
   });
